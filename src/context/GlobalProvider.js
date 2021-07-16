@@ -11,10 +11,10 @@ function GlobalProvider({ children }) {
 
   const [baseEndPoint, setBaseEndPoint] = useState(mealEP);
   const [requestParams, setRequestParams] = useState(initialParams);
-  const [recipesRender, setRecipesRender] = useState({ drinks: [], meals: [] });
-  const [recomendations, setRecomendations] = useState({ drinks: [], meals: [] });
   const [filterList, setFilterList] = useState(filtersBy);
   const [initialRecipes, setInitialRecipes] = useState({});
+  const [recipesRender, setRecipesRender] = useState({ drinks: [], meals: [] });
+  const [recomendations, setRecomendations] = useState({ drinks: [], meals: [] });
   const [details, setDetails] = useState({});
   const [toggle, setToggle] = useState({
     categoryName: '', status: false });
