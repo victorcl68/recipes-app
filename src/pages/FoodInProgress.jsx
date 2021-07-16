@@ -53,7 +53,7 @@ export default function FoodInProgress({ history, match, match: { params: { id }
         >
           <img src={ shareIcon } alt="Share" />
         </button>
-        {isCopied ? <p>Link copiado!</p> : null }
+        {isCopied && <spam>Link copiado!</spam>}
         <button
           type="button"
           onClick={ () => setRefresh(settingFavorite(details, id, refresh)) }

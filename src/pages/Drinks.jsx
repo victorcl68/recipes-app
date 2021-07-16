@@ -18,10 +18,12 @@ export default function Drinks({ history }) {
     updateEndPoint,
     toggle,
     handleToggle,
+    resetParams,
   } = useContext(Context);
 
   useEffect(() => {
     updateEndPoint('drinks');
+    return () => resetParams();
   }, []);
 
   const maxRecipe = 12;

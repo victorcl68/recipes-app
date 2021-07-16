@@ -19,7 +19,7 @@ export default function ShareButtonDoneRecipes({ templateString, index }) {
           alt="shareIcon"
         />
       </button>
-      {isCopied ? <p>Link copiado!</p> : null }
+      {isCopied && <spam>Link copiado!</spam>}
     </div>
   );
 }

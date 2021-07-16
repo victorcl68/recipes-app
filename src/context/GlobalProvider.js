@@ -12,9 +12,8 @@ export default function GlobalProvider({ children }) {
   const [baseEndPoint, setBaseEndPoint] = useState(mealEP);
   const [requestParams, setRequestParams] = useState(initialParams);
   const [filterList, setFilterList] = useState(filtersBy);
-  const [initialRecipes, setInitialRecipes] = useState({});
+  const [initialRecipes, setInitialRecipes] = useState({ drinks: [], meals: [] });
   const [recipesRender, setRecipesRender] = useState({ drinks: [], meals: [] });
-  const [recomendations, setRecomendations] = useState({ drinks: [], meals: [] });
   const [details, setDetails] = useState({});
   const [toggle, setToggle] = useState({
     categoryName: '', status: false });
@@ -32,9 +31,6 @@ export default function GlobalProvider({ children }) {
       setInitialRecipes({
         meals: Object.values(resultMeals)[0],
         drinks: Object.values(resultDrinks)[0] });
-      setRecomendations({ ...recomendations,
-        meals: resultMeals.meals,
-        drinks: resultDrinks.drinks });
       setRecipesRender({
         meals: resultMeals.meals,
         drinks: resultDrinks.drinks });
@@ -65,6 +61,7 @@ export default function GlobalProvider({ children }) {
   };
 
   const resetParams = () => {
+    if (initialRecipes.meals.length > 0) setRecipesRender(initialRecipes);
     setRequestParams(initialParams);
   }; // usar isso para resolver permanencia dos parametros quando alterna entre drinks e foods
 
@@ -151,7 +148,7 @@ export default function GlobalProvider({ children }) {
     baseEndPoint,
     requestParams,
     details,
-    recomendations,
+    initialRecipes,
     toggle,
     refresh,
     filterList,
@@ -162,7 +159,6 @@ export default function GlobalProvider({ children }) {
     asyncSetState,
     manageRenderMeal,
     manageRenderDrink,
-    setDetails,
     detailsSyncSetState,
     generateIngredientsAndMeasure,
     filterCategory,

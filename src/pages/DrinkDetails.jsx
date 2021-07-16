@@ -15,7 +15,7 @@ export default function DrinkDetails({ match, match: { params: { id } }, history
     details,
     detailsSyncSetState,
     generateIngredientsAndMeasure,
-    recomendations: { meals },
+    initialRecipes: { meals },
   } = useContext(Context);
 
   useEffect(() => {
@@ -103,7 +103,7 @@ export default function DrinkDetails({ match, match: { params: { id } }, history
         >
           <img src={ shareIcon } alt="Share" />
         </Button>
-        {isCopied ? <p>Link copiado!</p> : null }
+        {isCopied && <spam>Link copiado!</spam>}
         <Button
           variant="outline-danger"
           type="button"

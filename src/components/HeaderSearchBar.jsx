@@ -63,6 +63,7 @@ export default function HeaderSearchBar() {
   const porNome = (
     <Col>
       <Form.Check
+        defaultChecked
         label="Nome"
         value="search.php?s="
         onChange={ handleChange }

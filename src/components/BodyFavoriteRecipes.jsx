@@ -37,7 +37,6 @@ export default function BodyFavoriteRecipes({ index, history, each }) {
         {each.name}
       </button>
       <ShareButtonDoneRecipes templateString={ templateString } index={ index } />
-
     </section>);
 }
 
