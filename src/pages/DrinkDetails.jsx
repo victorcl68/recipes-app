@@ -15,7 +15,7 @@ function DrinkDetails({ match, match: { params: { id } }, history }) {
     details,
     detailsSyncSetState,
     generateIngredientsAndMeasure,
-    recomendationsFoods,
+    recomendations: meals,
   } = useContext(Context);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ function DrinkDetails({ match, match: { params: { id } }, history }) {
 
   const loopRecomendationsFoods = () => {
     const recommendationsNumber = 6;
-    const slicedRecommendations = recomendationsFoods.slice(0, recommendationsNumber);
+    const slicedRecommendations = meals.slice(0, recommendationsNumber);
     return (
       slicedRecommendations.map((meal, index) => (
         <div
@@ -73,7 +73,7 @@ function DrinkDetails({ match, match: { params: { id } }, history }) {
     );
   };
 
-  if (details.drinks && recomendationsFoods && id === details.drinks[0].idDrink) {
+  if (details.drinks && meals && id === details.drinks[0].idDrink) {
     const {
       strDrinkThumb,
       strDrink,
