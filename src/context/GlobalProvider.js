@@ -134,34 +134,17 @@ export default function GlobalProvider({ children }) {
 
   const filterCategory = async (category) => {
     const filterType = 'filter.php?c=';
-    let resultFilter = {};
     if (category) {
-      resultFilter = await fetchAPI(baseEndPoint, filterType, category);
-      if (resultFilter.meals) {
-        setRecipesRender({ ...recipesRender,
-          meals: resultFilter[Object.keys(resultFilter)[0]] });
-      } else {
-        setRecipesRender({ ...recipesRender,
-          drinks: resultFilter[Object.keys(resultFilter)[0]] });
-      }
+      handleRender(await fetchAPI(baseEndPoint, filterType, category));
     } else if (baseEndPoint === mealEP) {
-      setRecipesRender({ ...recipesRender, meals: initialRecipes.meals });
-    } else {
-      setRecipesRender({ ...recipesRender, drinks: initialRecipes.drinks });
-    }
+      handleRender({ meals: initialRecipes.meals });
+    } else handleRender({ drinks: initialRecipes.drinks });
   };
 
   const getByIngredients = async (part, str) => {
-    const result = await fetchAPI(
-      `https://www.the${part}db.com/api/json/v1/1/`,
-      'filter.php?i=',
-      str,
-    );
-    if (result.meals) {
-      setRecipesRender({ ...recipesRender, meals: result.meals });
-    } else {
-      setRecipesRender({ ...recipesRender, drinks: result.drinks });
-    }
+    handleRender(await fetchAPI(
+      `https://www.the${part}db.com/api/json/v1/1/`, 'filter.php?i=', str,
+    ));
   };
 
   const contextValue = {
