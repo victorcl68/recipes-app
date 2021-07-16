@@ -10,8 +10,8 @@ import CategoryBtn from '../components/CategoryBtn';
 
 function Drinks() {
   const {
-    drinks,
-    categories,
+    recipesRender: { drinks },
+    filterList: { categories },
     manageRenderDrink,
     filterCategory,
     updateEndPoint,

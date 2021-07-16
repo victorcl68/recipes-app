@@ -1,61 +1,91 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
+import { fetchAPI, getFilters } from '../services/fetchAPI';
 import Context from './Context';
-import {
-  fetchAPI, getCategories,
-} from '../services/fetchAPI';
-
-const foodsEndPoint = 'https://www.themealdb.com/api/json/v1/1/';
-const drinksEndPoint = 'https://www.thecocktaildb.com/api/json/v1/1/';
-const initialParams = { chosenFilter: 'search.php?s=', searchText: '' };
+import initialData from '../data/initialData';
 
 function GlobalProvider({ children }) {
-  const [baseEndPoint, setBaseEndPoint] = useState(foodsEndPoint);
+  const { initialParams, mealEP, cocktailEP, filtersBy } = initialData;
+
+  const [baseEndPoint, setBaseEndPoint] = useState(mealEP);
   const [requestParams, setRequestParams] = useState(initialParams);
-  const [requestResult, setRequestResult] = useState({ drinks: [], meals: [] });
-  const [categories, setCategories] = useState({ drinks: [], meals: [] });
-  const [filterList, setFilterList] = useState({});
+  const [recipesRender, setRecipesRender] = useState({ drinks: [], meals: [] });
+  const [recomendations, setRecomendations] = useState({ drinks: [], meals: [] });
+  const [filterList, setFilterList] = useState(filtersBy);
+  const [initialRecipes, setInitialRecipes] = useState({});
   const [details, setDetails] = useState({});
-  const [recomendationsDrinks, setRecomendationsDrinks] = useState();
-  const [recomendationsFoods, setRecomendationsFoods] = useState();
-  const [drinks, setDrinks] = useState([]);
-  const [meals, setMeals] = useState([]);
   const [toggle, setToggle] = useState({
-    categoryName: '', status: false, backup: { drinks, meals } });
+    categoryName: '', status: false });
   const [refresh, setRefresh] = useState(true);
 
   useEffect(() => {
-    async function fetchCategories() {
+    async function fetchInitialData() {
       const { chosenFilter, searchText } = initialParams;
-      setCategories(await getCategories());
-      setRequestResult(await fetchAPI(foodsEndPoint, chosenFilter, searchText));
-      setRequestResult(await fetchAPI(drinksEndPoint, chosenFilter, searchText));
-    } fetchCategories();
+      const resultMeals = await fetchAPI(mealEP, chosenFilter, searchText);
+      const resultDrinks = await fetchAPI(cocktailEP, chosenFilter, searchText);
+      setFilterList({ ...filterList,
+        categories: await getFilters('list.php?c='),
+        ingredients: await getFilters('list.php?i='),
+        area: await getFilters('list.php?a=') });
+      setInitialRecipes({
+        meals: Object.values(resultMeals)[0],
+        drinks: Object.values(resultDrinks)[0] });
+      setRecomendations({ ...recomendations,
+        meals: resultMeals.meals,
+        drinks: resultDrinks.drinks });
+      setRecipesRender({
+        meals: resultMeals.meals,
+        drinks: resultDrinks.drinks });
+    } fetchInitialData();
   }, []);
-
-  useEffect(() => {
-    if (requestResult.meals) {
-      setMeals(requestResult.meals);
-      setRecomendationsFoods(requestResult.meals);
-      setToggle({
-        ...toggle, backup: { ...toggle.backup, meals: requestResult.meals } });
-    }
-    if (requestResult.drinks) {
-      setDrinks(requestResult.drinks);
-      setRecomendationsDrinks(requestResult.drinks);
-      setToggle({
-        ...toggle, backup: { ...toggle.backup, drinks: requestResult.drinks } });
-    }
-    if (!requestResult[Object.keys(requestResult)[0]]) {
-      global
-        .alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-    }
-  }, [requestResult]);
 
   const handleChange = ({ target: { name, value } }) => {
     setRequestParams({ ...requestParams, [name]: value });
+  };
+
+  const handleRender = (result) => {
+    const key = Object.keys(result)[0];
+    setRecipesRender({ ...recipesRender, [key]: result[key] });
+  };
+
+  const handleToggle = (categoryName, status) => {
+    if (categoryName === toggle.categoryName || toggle.categoryName === '') {
+      setToggle({ categoryName, status });
+    } else {
+      setToggle({ categoryName, status });
+    }
+  };
+
+  const updateEndPoint = (type) => {
+    if (type === 'drinks') {
+      setBaseEndPoint(cocktailEP);
+    } else setBaseEndPoint(mealEP);
+  };
+
+  const resetParams = () => {
+    setRequestParams(initialParams);
+  }; // usar isso para resolver permanencia dos parametros quando alterna entre drinks e foods
+
+  const manageRenderMeal = (cardList) => {
+    const { meals } = recipesRender;
+    if (meals.length === 1 && requestParams.searchText.length > 0) {
+      const mealId = meals[0].idMeal;
+      return <Redirect to={ `/comidas/${mealId}` } />;
+    } if (meals.length >= 1) {
+      return cardList;
+    }
+  };
+
+  const manageRenderDrink = (cardList) => {
+    const { drinks } = recipesRender;
+    if (drinks.length === 1 && requestParams.searchText.length > 0) {
+      const drinkId = drinks[0].idDrink;
+      return <Redirect to={ `/bebidas/${drinkId}` } />;
+    } if (drinks.length >= 1) {
+      return cardList;
+    }
   };
 
   const generateIngredientsAndMeasure = (object) => {
@@ -76,24 +106,6 @@ function GlobalProvider({ children }) {
     return FatherObject;
   };
 
-  const resetParams = () => {
-    setRequestParams(initialParams);
-  };
-
-  const handleToggle = (categoryName, status) => {
-    if (categoryName === toggle.categoryName || toggle.categoryName === '') {
-      setToggle({ ...toggle, categoryName, status });
-    } else {
-      setToggle({ ...toggle, categoryName, status });
-    }
-  };
-
-  const updateEndPoint = (type) => {
-    if (type === 'drinks') {
-      setBaseEndPoint(drinksEndPoint);
-    } else setBaseEndPoint(foodsEndPoint);
-  };
-
   const randomRecipe = async () => {
     const response = await fetchAPI(baseEndPoint, 'random.php', '');
     if (response.meals) {
@@ -104,8 +116,12 @@ function GlobalProvider({ children }) {
   const asyncSetState = async () => {
     const { chosenFilter, searchText } = requestParams;
     const result = await fetchAPI(baseEndPoint, chosenFilter, searchText);
-    if (result) {
-      setRequestResult(result);
+    if (!result[Object.keys(result)[0]]) {
+      global.alert(
+        'Sinto muito, não encontramos nenhuma receita para esses filtros.',
+      );
+    } else if (result) {
+      handleRender(result);
     }
   };
 
@@ -116,44 +132,23 @@ function GlobalProvider({ children }) {
     }
   };
 
-  const manageRenderMeal = (cardList) => {
-    if (meals.length === 1 && requestParams.searchText.length > 0) {
-      const mealId = meals[0].idMeal;
-      return <Redirect to={ `/comidas/${mealId}` } />;
-    } if (meals.length >= 1) {
-      return cardList;
-    }
-  };
-
-  const manageRenderDrink = (cardList) => {
-    if (drinks.length === 1 && requestParams.searchText.length > 0) {
-      const drinkId = drinks[0].idDrink;
-      return <Redirect to={ `/bebidas/${drinkId}` } />;
-    } if (drinks.length >= 1) {
-      return cardList;
-    }
-  };
-
   const filterCategory = async (category) => {
     const filterType = 'filter.php?c=';
     let resultFilter = {};
     if (category) {
       resultFilter = await fetchAPI(baseEndPoint, filterType, category);
       if (resultFilter.meals) {
-        setMeals(resultFilter[Object.keys(resultFilter)[0]]);
+        setRecipesRender({ ...recipesRender,
+          meals: resultFilter[Object.keys(resultFilter)[0]] });
       } else {
-        setDrinks(resultFilter[Object.keys(resultFilter)[0]]);
+        setRecipesRender({ ...recipesRender,
+          drinks: resultFilter[Object.keys(resultFilter)[0]] });
       }
-    } else if (baseEndPoint === foodsEndPoint) {
-      setMeals(toggle.backup.meals);
+    } else if (baseEndPoint === mealEP) {
+      setRecipesRender({ ...recipesRender, meals: initialRecipes.meals });
     } else {
-      setDrinks(toggle.backup.drinks);
+      setRecipesRender({ ...recipesRender, drinks: initialRecipes.drinks });
     }
-  };
-
-  const getFiltersList = async (url) => {
-    setFilterList({
-      ...await fetchAPI(url, '', 'list') });
   };
 
   const getByIngredients = async (part, str) => {
@@ -162,26 +157,22 @@ function GlobalProvider({ children }) {
       'filter.php?i=',
       str,
     );
-    console.log(await result);
     if (result.meals) {
-      setMeals(result.meals);
+      setRecipesRender({ ...recipesRender, meals: result.meals });
     } else {
-      setDrinks(result.drinks);
+      setRecipesRender({ ...recipesRender, drinks: result.drinks });
     }
   };
 
   const contextValue = {
     baseEndPoint,
     requestParams,
-    meals,
-    drinks,
-    categories,
     details,
-    recomendationsDrinks,
-    recomendationsFoods,
+    recomendations,
     toggle,
     refresh,
     filterList,
+    recipesRender,
     resetParams,
     updateEndPoint,
     handleChange,
@@ -195,7 +186,6 @@ function GlobalProvider({ children }) {
     handleToggle,
     setRefresh,
     randomRecipe,
-    getFiltersList,
     getByIngredients,
   };
 

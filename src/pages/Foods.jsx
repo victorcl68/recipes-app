@@ -10,8 +10,8 @@ import CategoryBtn from '../components/CategoryBtn';
 
 function Foods() {
   const {
-    meals,
-    categories,
+    recipesRender: { meals },
+    filterList: { categories },
     manageRenderMeal,
     filterCategory,
     updateEndPoint,
