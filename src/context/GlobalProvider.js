@@ -6,7 +6,7 @@ import { fetchAPI, getFilters } from '../services/fetchAPI';
 import Context from './Context';
 import initialData from '../data/initialData';
 
-function GlobalProvider({ children }) {
+export default function GlobalProvider({ children }) {
   const { initialParams, mealEP, cocktailEP, filtersBy } = initialData;
 
   const [baseEndPoint, setBaseEndPoint] = useState(mealEP);
@@ -196,8 +196,4 @@ function GlobalProvider({ children }) {
   );
 }
 
-export default GlobalProvider;
-
-GlobalProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+GlobalProvider.propTypes = { children: PropTypes.node }.isRequired;
