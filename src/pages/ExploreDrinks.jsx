@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 import renderExporeBtn from '../components/ExploreBtn';
 import Context from '../context/Context';
 
-function ExploreDrinks() {
+export default function ExploreDrinks() {
   const [redirectTo, setRedirectTo] = useState();
   const { updateEndPoint, randomRecipe } = useContext(Context);
 
@@ -29,5 +29,3 @@ function ExploreDrinks() {
     </>
   );
 }
-
-export default ExploreDrinks;

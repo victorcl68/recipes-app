@@ -8,7 +8,7 @@ import { localStorageVerifier,
 import { copyLink } from '../services/functions';
 import DecentFooter from '../components/DecentFooter';
 
-function FoodDetails({ match, match: { params: { id } }, history }) {
+export default function FoodDetails({ match, match: { params: { id } }, history }) {
   const [isCopied, setIsCopied] = useState(false);
   const [refresh, setRefresh] = useState(true);
   const {
@@ -64,10 +64,6 @@ function FoodDetails({ match, match: { params: { id } }, history }) {
               </Card.Body>
             </Card>
           </CardColumns>
-          {/* <img src={ drink.strDrinkThumb } alt="recommendation drink" width="150px" />
-          <h3 data-testid={ `${index}-recomendation-title` }>
-            {drink.strDrink}
-          </h3> */}
         </div>
       ))
     );
@@ -100,8 +96,6 @@ function FoodDetails({ match, match: { params: { id } }, history }) {
             </Card.Body>
           </Card>
         </CardColumns>
-        {/* <img data-testid="recipe-photo" src={ strMealThumb } alt="Meal" width="200px" />
-        <h1 data-testid="recipe-title">{strMeal}</h1> */}
         <Button
           variant="outline-warning"
           type="button"
@@ -144,8 +138,4 @@ function FoodDetails({ match, match: { params: { id } }, history }) {
 }
 
 FoodDetails.propTypes = {
-  match: PropTypes.shape().isRequired,
-  history: PropTypes.shape().isRequired,
-};
-
-export default FoodDetails;
+  match: PropTypes.shape(), history: PropTypes.shape() }.isRequired;

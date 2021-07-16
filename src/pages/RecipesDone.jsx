@@ -68,6 +68,4 @@ export default function RecipesDone({ history }) {
   );
 }
 
-RecipesDone.propTypes = {
-  history: PropTypes.shape().isRequired,
-};
+RecipesDone.propTypes = { history: PropTypes.shape() }.isRequired;

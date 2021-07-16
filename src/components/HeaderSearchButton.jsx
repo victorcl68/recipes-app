@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import searchIcon from '../images/searchIcon.svg';
 import HeaderSearchBar from './HeaderSearchBar';
 
-function HeaderSearchButton() {
+export default function HeaderSearchButton() {
   const [renderButton, setRenderButton] = useState(false);
 
   return (
@@ -18,5 +18,3 @@ function HeaderSearchButton() {
     </>
   );
 }
-
-export default HeaderSearchButton;

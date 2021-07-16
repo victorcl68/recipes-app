@@ -25,6 +25,6 @@ export default function ShareButtonDoneRecipes({ templateString, index }) {
 }
 
 ShareButtonDoneRecipes.propTypes = {
-  templateString: PropTypes.string.isRequired,
-  index: PropTypes.number.isRequired,
-};
+  templateString: PropTypes.string,
+  index: PropTypes.number,
+}.isRequired;

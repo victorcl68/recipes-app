@@ -80,6 +80,4 @@ export default function FavoriteRecipes({ history }) {
   );
 }
 
-FavoriteRecipes.propTypes = {
-  history: PropTypes.shape().isRequired,
-};
+FavoriteRecipes.propTypes = { history: PropTypes.shape() }.isRequired;

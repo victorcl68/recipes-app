@@ -7,7 +7,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import IngredientCard from '../components/IngredientCard';
 
-function ExploreDrinksIngredients() {
+export default function ExploreDrinksIngredients() {
   const { filterList: { ingredients }, getByIngredients } = useContext(Context);
   const [isRedirect, setIsRedirect] = useState(false);
 
@@ -33,5 +33,3 @@ function ExploreDrinksIngredients() {
     </>
   );
 }
-
-export default ExploreDrinksIngredients;

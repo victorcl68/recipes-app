@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Form,
-  Button, InputGroup, FormControl, Container, Row, Col } from 'react-bootstrap';
+import { Form, Button, InputGroup, FormControl, Container, Row, Col }
+  from 'react-bootstrap';
 import Context from '../context/Context';
 
-function HeaderSearchBar() {
+export default function HeaderSearchBar() {
   const {
     requestParams: { chosenFilter, searchText },
     handleChange,
@@ -94,7 +94,7 @@ function HeaderSearchBar() {
     <Col>
       <span>Local: </span>
       <select aria-label="Default select example">
-        <option value="1">One</option>
+        {/* <option value="1">One</option> */}
       </select>
     </Col>
   );
@@ -114,5 +114,3 @@ function HeaderSearchBar() {
     </Form>
   );
 }
-
-export default HeaderSearchBar;

@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { getEmail, clearStorageAndPushToLogin } from '../services/manageLocalStorage2';
 
-function Profile({ history }) {
+export default function Profile({ history }) {
   return (
     <>
       <Header title="Perfil" />
@@ -41,8 +41,4 @@ function Profile({ history }) {
   );
 }
 
-export default Profile;
-
-Profile.propTypes = {
-  history: PropTypes.shape().isRequired,
-};
+Profile.propTypes = { history: PropTypes.shape() }.isRequired;

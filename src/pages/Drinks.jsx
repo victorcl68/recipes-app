@@ -9,7 +9,7 @@ import Footer from '../components/Footer';
 import RecipeCard from '../components/RecipeCard';
 import CategoryBtn from '../components/CategoryBtn';
 
-function Drinks({ history }) {
+export default function Drinks({ history }) {
   const {
     recipesRender: { drinks },
     filterList: { categories },
@@ -69,5 +69,3 @@ function Drinks({ history }) {
 }
 
 Drinks.propTypes = { history: PropTypes.shape() }.isRequired;
-
-export default Drinks;

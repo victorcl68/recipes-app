@@ -8,7 +8,7 @@ import shareIcon from '../images/shareIcon.svg';
 import { verifyFavorite, settingFavorite,
   disableFinishRecipeButton, finishRecipe } from '../services/manageLocalStorage';
 
-function DrinkInProgress({ match, history, match: { params: { id } } }) {
+export default function DrinkInProgress({ match, history, match: { params: { id } } }) {
   const [isCopied, setIsCopied] = useState(false);
   const [refresh, setRefresh] = useState(true);
   const [check, setCheck] = useState();
@@ -88,8 +88,4 @@ function DrinkInProgress({ match, history, match: { params: { id } } }) {
 }
 
 DrinkInProgress.propTypes = {
-  match: PropTypes.shape().isRequired,
-  history: PropTypes.shape().isRequired,
-};
-
-export default DrinkInProgress;
+  match: PropTypes.shape(), history: PropTypes.shape() }.isRequired;

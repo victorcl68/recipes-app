@@ -19,7 +19,7 @@ export default function loopIngredientsAndMeasure(
         key={ `ingredientAndMeasure${index + 1}` }
       >
         <input
-          checked={ checkBoolean(id, index) }
+          defaultChecked={ checkBoolean(id, index) }
           className={ checkBoolean(id, index) ? 'showCss' : 'hideCss' }
           key={ index }
           type="checkbox"
