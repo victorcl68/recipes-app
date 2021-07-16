@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect } from 'react';
 import { Button, CardColumns, Container } from 'react-bootstrap';
+import { PropTypes } from 'prop-types';
 import Context from '../context/Context';
 import Header from '../components/Header';
 import HeaderSearchButton from '../components/HeaderSearchButton';
@@ -8,7 +9,7 @@ import Footer from '../components/Footer';
 import RecipeCard from '../components/RecipeCard';
 import CategoryBtn from '../components/CategoryBtn';
 
-function Foods() {
+function Foods({ history }) {
   const {
     recipesRender: { meals },
     filterList: { categories },
@@ -28,7 +29,7 @@ function Foods() {
   const render = meals.length > 0 && categories;
 
   const foodList = () => meals.slice(0, maxRecipe).map((meal, index) => (
-    RecipeCard(meal, index)));
+    RecipeCard(meal, index, history)));
 
   const categoryList = () => categories.meals.slice(0, maxCategory)
     .map(({ strCategory }) => (
@@ -59,10 +60,14 @@ function Foods() {
     <>
       <HeaderSearchButton />
       <Header title="Comidas" />
-      {render ? manageRenderMeal(renderList) : <div>Loading</div>}
+      <Container>
+        {render ? manageRenderMeal(renderList) : <div>Loading</div>}
+      </Container>
       <Footer />
     </>
   );
 }
+
+Foods.propTypes = { history: PropTypes.shape() }.isRequired;
 
 export default Foods;
