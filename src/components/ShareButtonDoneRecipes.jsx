@@ -13,13 +13,12 @@ export default function ShareButtonDoneRecipes({ templateString, index }) {
           copyLinkDoneRecipes(templateString, isCopied),
         ) }
       >
-        <img
+        {isCopied ? 'Link copiado!' : <img
           data-testid={ `${index}-horizontal-share-btn` }
           src={ shareIcon }
           alt="shareIcon"
-        />
+        />}
       </button>
-      {isCopied && <spam>Link copiado!</spam>}
     </div>
   );
 }
