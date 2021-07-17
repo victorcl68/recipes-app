@@ -101,9 +101,8 @@ export default function DrinkDetails({ match, match: { params: { id } }, history
           data-testid="share-btn"
           onClick={ () => setIsCopied(copyLink(match, isCopied)) }
         >
-          <img src={ shareIcon } alt="Share" />
+          {isCopied ? 'Link copiado!' : <img src={ shareIcon } alt="Share" />}
         </Button>
-        {isCopied && <spam>Link copiado!</spam>}
         <Button
           variant="outline-danger"
           type="button"

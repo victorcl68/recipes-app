@@ -48,10 +48,8 @@ export default function DrinkInProgress({ match, history, match: { params: { id 
           data-testid="share-btn"
           onClick={ () => setIsCopied(copyLinkInProgress(match, isCopied)) }
         >
-
-          <img src={ shareIcon } alt="Share" />
+          {isCopied ? 'Link copiado!' : <img src={ shareIcon } alt="Share" />}
         </button>
-        {isCopied && <spam>Link copiado!</spam>}
         <button
           type="button"
           onClick={ () => setRefresh(settingFavorite(details, id, refresh)) }
