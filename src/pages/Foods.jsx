@@ -59,14 +59,14 @@ export default function Foods({ history }) {
   );
 
   return (
-    <>
+    <main className="general-background-color">
       <HeaderSearchButton />
       <Header title="Comidas" />
       <Container>
         {render ? manageRenderMeal(renderList) : <div>Loading</div>}
       </Container>
       <Footer />
-    </>
+    </main>
   );
 }
 

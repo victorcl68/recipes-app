@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import { generateCorrectObj } from './functions';
@@ -55,28 +56,30 @@ export const localStorageVerifier = (match, id, history) => {
     && !Object.keys(inProgressArrayVerifier[mealOrCockTail]).some((obj) => obj === id)
   )) {
     return (
-      <button
+      <Button
+        variant="dark"
         type="button"
         data-testid="start-recipe-btn"
         className="start-recipe"
         onClick={ () => makeRecipe(match, history) }
       >
         Iniciar Receita
-      </button>
+      </Button>
     );
   }
 
   if (inProgressArrayVerifier
     && Object.keys(inProgressArrayVerifier[mealOrCockTail]).some((obj) => obj === id)) {
     return (
-      <button
+      <Button
+        variant="dark"
         type="button"
         data-testid="start-recipe-btn"
         className="start-recipe"
         onClick={ () => history.push(`/${pushString}/${id}/in-progress`) }
       >
         Continuar Receita
-      </button>
+      </Button>
     );
   }
   const rawDoneRecipes = localStorage.getItem('doneRecipes');

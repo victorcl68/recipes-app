@@ -94,9 +94,7 @@ export default function HeaderSearchBar() {
   const porLocal = (
     <Col>
       <span>Local: </span>
-      <select aria-label="Default select example">
-        {/* <option value="1">One</option> */}
-      </select>
+      <select aria-label="Default select example" />
     </Col>
   );
 
