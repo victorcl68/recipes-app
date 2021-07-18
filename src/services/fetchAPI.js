@@ -10,9 +10,9 @@ export const fetchAPI = async (baseEndPoint, filter, term) => {
   }
 };
 
-export const getCategories = async () => {
-  const mealsPoint = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
-  const drinksPoint = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
+export const getFilters = async (filter) => {
+  const mealsPoint = `https://www.themealdb.com/api/json/v1/1/${filter}list`;
+  const drinksPoint = `https://www.thecocktaildb.com/api/json/v1/1/${filter}list`;
   return Object.assign({}, ...await Promise.all([fetch(mealsPoint), fetch(drinksPoint)])
     .then((responses) => Promise.all(responses.map((res) => res.json()))));
 };

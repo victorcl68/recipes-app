@@ -19,12 +19,12 @@ export default function ShareButtonDoneRecipes({ templateString, index }) {
           alt="shareIcon"
         />
       </button>
-      {isCopied ? <p>Link copiado!</p> : null }
+      {isCopied && <spam>Link copiado!</spam>}
     </div>
   );
 }
 
 ShareButtonDoneRecipes.propTypes = {
-  templateString: PropTypes.string.isRequired,
-  index: PropTypes.number.isRequired,
-};
+  templateString: PropTypes.string,
+  index: PropTypes.number,
+}.isRequired;

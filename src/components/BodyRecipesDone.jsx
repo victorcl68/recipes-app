@@ -43,7 +43,7 @@ export default function BodyRecipesDone({ index, history, each }) {
 }
 
 BodyRecipesDone.propTypes = {
-  history: PropTypes.shape().isRequired,
-  each: PropTypes.shape().isRequired,
-  index: PropTypes.number.isRequired,
-};
+  history: PropTypes.shape(),
+  each: PropTypes.shape(),
+  index: PropTypes.number,
+}.isRequired;

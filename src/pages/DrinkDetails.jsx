@@ -8,14 +8,14 @@ import { localStorageVerifier,
   verifyFavorite, settingFavorite } from '../services/manageLocalStorage';
 import { copyLink } from '../services/functions';
 
-function DrinkDetails({ match, match: { params: { id } }, history }) {
+export default function DrinkDetails({ match, match: { params: { id } }, history }) {
   const [isCopied, setIsCopied] = useState(false);
   const [refresh, setRefresh] = useState(true);
   const {
     details,
     detailsSyncSetState,
     generateIngredientsAndMeasure,
-    recomendationsFoods,
+    initialRecipes: { meals },
   } = useContext(Context);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ function DrinkDetails({ match, match: { params: { id } }, history }) {
 
   const loopRecomendationsFoods = () => {
     const recommendationsNumber = 6;
-    const slicedRecommendations = recomendationsFoods.slice(0, recommendationsNumber);
+    const slicedRecommendations = meals.slice(0, recommendationsNumber);
     return (
       slicedRecommendations.map((meal, index) => (
         <div
@@ -64,16 +64,12 @@ function DrinkDetails({ match, match: { params: { id } }, history }) {
               </Card.Body>
             </Card>
           </CardColumns>
-          {/* <img src={ meal.strMealThumb } alt="recommendation meal" width="150px" />
-          <h3 data-testid={ `${index}-recomendation-title` }>
-            {meal.strMeal}
-          </h3> */}
         </div>
       ))
     );
   };
 
-  if (details.drinks && recomendationsFoods && id === details.drinks[0].idDrink) {
+  if (details.drinks && meals && id === details.drinks[0].idDrink) {
     const {
       strDrinkThumb,
       strDrink,
@@ -99,9 +95,6 @@ function DrinkDetails({ match, match: { params: { id } }, history }) {
             </Card.Body>
           </Card>
         </CardColumns>
-        {/* <img data-testid="recipe-photo" src={ strDrinkThumb } alt="Drink"
-        width="200px" /> */}
-        {/* <h1 data-testid="recipe-title">{strDrink}</h1> */}
         <Button
           variant="outline-warning"
           type="button"
@@ -110,7 +103,7 @@ function DrinkDetails({ match, match: { params: { id } }, history }) {
         >
           <img src={ shareIcon } alt="Share" />
         </Button>
-        {isCopied ? <p>Link copiado!</p> : null }
+        {isCopied && <spam>Link copiado!</spam>}
         <Button
           variant="outline-danger"
           type="button"
@@ -140,8 +133,4 @@ function DrinkDetails({ match, match: { params: { id } }, history }) {
 }
 
 DrinkDetails.propTypes = {
-  match: PropTypes.shape().isRequired,
-  history: PropTypes.shape().isRequired,
-};
-
-export default DrinkDetails;
+  match: PropTypes.shape(), history: PropTypes.shape() }.isRequired;

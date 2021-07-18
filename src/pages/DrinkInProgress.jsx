@@ -8,7 +8,7 @@ import shareIcon from '../images/shareIcon.svg';
 import { verifyFavorite, settingFavorite,
   disableFinishRecipeButton, finishRecipe } from '../services/manageLocalStorage';
 
-function DrinkInProgress({ match, history, match: { params: { id } } }) {
+export default function DrinkInProgress({ match, history, match: { params: { id } } }) {
   const [isCopied, setIsCopied] = useState(false);
   const [refresh, setRefresh] = useState(true);
   const [check, setCheck] = useState();
@@ -51,8 +51,7 @@ function DrinkInProgress({ match, history, match: { params: { id } } }) {
 
           <img src={ shareIcon } alt="Share" />
         </button>
-        {isCopied ? <p>Link copiado!</p> : null }
-
+        {isCopied && <spam>Link copiado!</spam>}
         <button
           type="button"
           onClick={ () => setRefresh(settingFavorite(details, id, refresh)) }
@@ -88,8 +87,4 @@ function DrinkInProgress({ match, history, match: { params: { id } } }) {
 }
 
 DrinkInProgress.propTypes = {
-  match: PropTypes.shape().isRequired,
-  history: PropTypes.shape().isRequired,
-};
-
-export default DrinkInProgress;
+  match: PropTypes.shape(), history: PropTypes.shape() }.isRequired;

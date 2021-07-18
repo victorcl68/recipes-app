@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import HeaderSearchButton from '../components/HeaderSearchButton';
 import Footer from '../components/Footer';
 
-function ExploreFoodsArea() {
+export default function ExploreFoodsArea() {
   return (
     <>
       <div>Tela de explorar comidas area</div>
@@ -13,5 +13,3 @@ function ExploreFoodsArea() {
     </>
   );
 }
-
-export default ExploreFoodsArea;
