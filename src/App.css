@@ -172,6 +172,14 @@
 }
 
 .not-found {
-  text-align: center;
   color: red;
+  text-align: center;
+}
+
+.main-foods {
+  background-color: #f1c232;
+}
+
+.main-drinks {
+  background-color: #f1c232;
 }
