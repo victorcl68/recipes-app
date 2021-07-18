@@ -166,7 +166,12 @@
 }
 
 .recipe-book {
-  width: 225px;
   margin-bottom: 15px;
   margin-top: 10px;
+  width: 225px;
+}
+
+.not-found {
+  text-align: center;
+  color: red;
 }
