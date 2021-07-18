@@ -80,7 +80,7 @@ export default function DrinkDetails({ match, match: { params: { id } }, history
     } = details.drinks[0];
 
     return (
-      <main>
+      <main className="general-background-color">
         <CardColumns>
           <Card>
             <Card.Img

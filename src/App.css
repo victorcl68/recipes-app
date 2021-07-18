@@ -92,7 +92,7 @@
 }
 
 .footer-generic {
-  background-color: white;
+  background-color: #cc0000;
   bottom: 0;
   padding: 10px;
   position: fixed;
@@ -123,7 +123,7 @@
 
 .decent-footer {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-end;
 }
 
 .card-columns {
@@ -176,10 +176,10 @@
   text-align: center;
 }
 
-.main-foods {
+.general-background-color {
   background-color: #f1c232;
 }
 
-.main-drinks {
-  background-color: #f1c232;
+.voltar, .sair {
+  margin-right: 15px;
 }

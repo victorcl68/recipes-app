@@ -41,7 +41,7 @@ export default function DrinkInProgress({ match, history, match: { params: { id 
     } = details.drinks[0];
 
     return (
-      <main>
+      <main className="general-background-color">
         <CardColumns>
           <Card>
             <Card.Img

@@ -44,7 +44,7 @@ export default function FoodInProgress({ history, match, match: { params: { id }
     } = details.meals[0];
 
     return (
-      <main>
+      <main className="general-background-color">
         <CardColumns>
           <Card>
             <Card.Img

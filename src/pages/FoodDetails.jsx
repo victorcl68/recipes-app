@@ -81,7 +81,7 @@ export default function FoodDetails({ match, match: { params: { id } }, history 
     } = details.meals[0];
 
     return (
-      <main>
+      <main className="general-background-color">
         <CardColumns>
           <Card>
             <Card.Img

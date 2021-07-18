@@ -18,7 +18,7 @@ export default function ExploreDrinksIngredients() {
   };
 
   return isRedirect ? <Redirect to="/bebidas" /> : (
-    <>
+    <main className="general-background-color">
       <Header title="Explorar Ingredientes" />
       <Container>
         <Row>
@@ -29,6 +29,6 @@ export default function ExploreDrinksIngredients() {
         </Row>
       </Container>
       <Footer />
-    </>
+    </main>
   );
 }

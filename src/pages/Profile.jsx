@@ -7,7 +7,7 @@ import { getEmail, clearStorageAndPushToLogin } from '../services/manageLocalSto
 
 export default function Profile({ history }) {
   return (
-    <>
+    <main className="general-background-color">
       <Header title="Perfil" />
       <main>
         <h4
@@ -44,7 +44,7 @@ export default function Profile({ history }) {
         </section>
       </main>
       <Footer />
-    </>
+    </main>
   );
 }
 

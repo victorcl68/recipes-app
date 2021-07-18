@@ -59,7 +59,7 @@ export default function Foods({ history }) {
   );
 
   return (
-    <main className="main-foods">
+    <main className="general-background-color">
       <HeaderSearchButton />
       <Header title="Comidas" />
       <Container>

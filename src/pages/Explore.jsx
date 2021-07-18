@@ -18,11 +18,11 @@ export default function Explore() {
   );
 
   return redirect ? <Redirect to={ redirect } /> : (
-    <>
+    <main className="general-background-color">
       <Header title="Explorar" />
       {exploreBtn('food')}
       {exploreBtn()}
       <Footer />
-    </>
+    </main>
   );
 }

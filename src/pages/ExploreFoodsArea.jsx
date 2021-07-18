@@ -5,10 +5,10 @@ import Footer from '../components/Footer';
 
 export default function ExploreFoodsArea() {
   return (
-    <>
+    <main className="general-background-color">
       <Header title="Explorar Origem" />
       <HeaderSearchButton />
       <Footer />
-    </>
+    </main>
   );
 }

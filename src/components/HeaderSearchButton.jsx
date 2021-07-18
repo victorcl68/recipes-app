@@ -9,7 +9,7 @@ export default function HeaderSearchButton() {
   return (
     <>
       <Button
-        variant="outline-dark"
+        variant="outline"
         type="button"
         onClick={ () => { setRenderButton(!renderButton); } }
       >

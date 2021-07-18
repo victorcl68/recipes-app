@@ -53,7 +53,7 @@ export default function FavoriteRecipes({ history }) {
       )));
   };
   return (
-    <article>
+    <article className="general-background-color">
       <Header title="Receitas Favoritas" />
       <section className="buttons-fav">
         <Button

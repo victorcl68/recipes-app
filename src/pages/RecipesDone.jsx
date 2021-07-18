@@ -36,7 +36,7 @@ export default function RecipesDone({ history }) {
       )));
   };
   return (
-    <article>
+    <article className="general-background-color">
       <Header title="Receitas Feitas" />
       <section className="buttons-done">
         <Button
