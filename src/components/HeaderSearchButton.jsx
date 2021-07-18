@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Container } from 'react-bootstrap';
 import searchIcon from '../images/searchIcon.svg';
 import HeaderSearchBar from './HeaderSearchBar';
 
@@ -14,7 +15,7 @@ export default function HeaderSearchButton() {
           data-testid="search-top-btn"
         />
       </button>
-      {renderButton ? <HeaderSearchBar /> : null}
+      {renderButton ? (<Container fluid="sm"><HeaderSearchBar /></Container>) : null}
     </>
   );
 }
