@@ -21,11 +21,10 @@ export default function ExploreDrinks() {
   };
 
   return redirectTo ? <Redirect to={ redirectTo } /> : (
-    <>
-      <div>Tela de explorar bebidas</div>
+    <main className="general-background-color">
       <Header title="Explorar Bebidas" />
       {renderExporeBtn(handleRedirect, 'drinks')}
       <Footer />
-    </>
+    </main>
   );
 }

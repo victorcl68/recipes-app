@@ -1,14 +1,16 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 
 const exploreBtn = (word, term, handle) => (
-  <button
+  <Button
+    variant="outline-dark"
     key={ term }
     type="button"
     data-testid={ `explore-${term}` }
     onClick={ handle }
   >
     {word}
-  </button>
+  </Button>
 );
 
 export default function renderExporeBtn(handle, isDrink) {

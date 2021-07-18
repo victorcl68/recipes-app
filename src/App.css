@@ -1,43 +1,3 @@
-.meals {
-  align-items: center;
-  background: #0fa36b;
-  color: #464646;
-  display: flex;
-  flex-direction: column;
-  font-family: sans-serif;
-  height: 100vh;
-  justify-content: center;
-  width: 100%;
-}
-
-.rocksGlass {
-  animation: shake 1s infinite ease;
-  max-height: 80vh;
-}
-
-.carousel {
-  display: none;
-}
-
-.start-recipe {
-  bottom: 0;
-  position: fixed;
-}
-
-.finish-recipe {
-  bottom: 0;
-  position: fixed;
-}
-
-.hideCss {
-  color: red;
-}
-
-.showCss {
-  color: blue;
-  text-decoration: none solid black;
-}
-
 /*
 #iceLeft {
   animation: clink .8s infinite ease;
@@ -52,12 +12,8 @@
 }
 */
 
-.meals > .logo {
-  animation: shake 1.5s infinite ease;
-  color: aliceblue;
-  font-family: Montserrat , sans-serif;
-  font-size: 3em;
-  font-weight: 900;
+.space-footer {
+  margin-bottom: 3%;
 }
 
 @keyframes shake {
@@ -90,8 +46,53 @@
   }
 }
 
+.meals {
+  align-items: center;
+  background: #f1c232;
+  color: #464646;
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
+
+.rocksGlass {
+  animation: shake 1s infinite ease;
+  max-height: 80vh;
+}
+
+.start-recipe {
+  bottom: 0;
+  position: fixed;
+}
+
+.finish-recipe {
+  bottom: 0;
+  position: fixed;
+}
+
+.hideCss {
+  color: red;
+}
+
+.showCss {
+  color: blue;
+  text-decoration: none solid black;
+}
+
+.meals > .logo {
+  animation: shake 1.5s infinite ease;
+  color: aliceblue;
+  font-family: Montserrat , sans-serif;
+  font-size: 2em;
+  font-weight: 900;
+  text-align: center;
+}
+
 .footer-generic {
-  background-color: white;
+  background-color: #c00;
   bottom: 0;
   padding: 10px;
   position: fixed;
@@ -122,11 +123,11 @@
 
 .decent-footer {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-end;
 }
 
 .card-columns {
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
   padding: 20px;
 }
 
@@ -141,4 +142,45 @@
 
 .category, .recomendations {
   font-weight: 600;
+  text-align: center;
+}
+
+.instructions {
+  margin-left: 5px;
+  text-align: justify;
+}
+
+.share-and-fav {
+  text-align: center;
+}
+
+.iframe {
+  margin: 20px 0;
+}
+
+.profile-email {
+  text-align: center;
+}
+
+.buttons-profile, .buttons-done, .buttons-fav {
+  text-align: center;
+}
+
+.recipe-book {
+  margin-bottom: 15px;
+  margin-top: 10px;
+  width: 225px;
+}
+
+.not-found {
+  color: red;
+  text-align: center;
+}
+
+.general-background-color {
+  background-color: #f1c232;
+}
+
+.home, .sair {
+  margin-right: 15px;
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
-import rockGlass from '../images/rockGlass.svg';
+import recipeBook from '../images/recipeBook.png';
 import '../App.css';
 
 const initialState = {
@@ -34,10 +34,8 @@ export default function Login() {
     <Redirect to="/comidas" />
   ) : (
     <div className="meals">
-      <span className="logo">New Market</span>
-      <object className="rocksGlass" type="image/svg+xml" data={ rockGlass }>
-        Glass
-      </object>
+      <span className="logo">All in One Recipes</span>
+      <img className="recipe-book" src={ recipeBook } alt="Recipe Book" />
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Control
           type="email"

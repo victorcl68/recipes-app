@@ -5,11 +5,10 @@ import Footer from '../components/Footer';
 
 export default function ExploreFoodsArea() {
   return (
-    <>
-      <div>Tela de explorar comidas area</div>
+    <main className="general-background-color">
       <Header title="Explorar Origem" />
       <HeaderSearchButton />
       <Footer />
-    </>
+    </main>
   );
 }

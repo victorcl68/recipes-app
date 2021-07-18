@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
-import { Button, Card, CardColumns } from 'react-bootstrap';
+import { Button, Card, CardColumns, CardGroup, Container, ListGroup }
+  from 'react-bootstrap';
 import Context from '../context/Context';
 import shareIcon from '../images/shareIcon.svg';
 import { localStorageVerifier,
@@ -27,14 +28,16 @@ export default function FoodDetails({ match, match: { params: { id } }, history 
     const mealArray = Object.keys(IngredientsAndMeasures.ingredient);
     return (
       mealArray.map((_a, index) => (
-        <section key={ `ingredientAndMeasure${index + 1}` }>
-          <div data-testid={ `${index}-ingredient-name-and-measure` }>
-            {IngredientsAndMeasures.ingredient[`strIngredient${index + 1}`]}
-          </div>
-          <div data-testid={ `${index}-ingredient-name-and-measure` }>
-            {IngredientsAndMeasures.measure[`strMeasure${index + 1}`]}
-          </div>
-        </section>
+        <ListGroup key={ `ingredientAndMeasure${index + 1}` }>
+          <ListGroup.Item>
+            <span data-testid={ `${index}-ingredient-name-and-measure` }>
+              {`${IngredientsAndMeasures.ingredient[`strIngredient${index + 1}`]} - `}
+            </span>
+            <span data-testid={ `${index}-ingredient-name-and-measure` }>
+              {`${IngredientsAndMeasures.measure[`strMeasure${index + 1}`]}`}
+            </span>
+          </ListGroup.Item>
+        </ListGroup>
       ))
     );
   }
@@ -43,19 +46,18 @@ export default function FoodDetails({ match, match: { params: { id } }, history 
     const recommendationsNumber = 6;
     const slicedRecommendations = drinks.slice(0, recommendationsNumber);
     return (
-      slicedRecommendations.map((drink, index) => (
-        <div
-          className={ index === 0 || index === 1 ? '' : 'carousel' }
-          key={ index }
-          data-testid={ `${index}-recomendation-card` }
-        >
-          <CardColumns>
-            <Card>
+      <Container>
+        <CardGroup>
+          {slicedRecommendations.map((drink, index) => (
+            <Card
+              key={ index }
+              hidden={ index === 0 || index === 1 ? '' : 'true' }
+              data-testid={ `${index}-recomendation-card` }
+            >
               <Card.Img
                 variant="top"
                 src={ drink.strDrinkThumb }
                 alt="recommendation drink"
-                width="150px"
               />
               <Card.Body>
                 <Card.Title data-testid={ `${index}-recomendation-title` }>
@@ -63,9 +65,9 @@ export default function FoodDetails({ match, match: { params: { id } }, history 
                 </Card.Title>
               </Card.Body>
             </Card>
-          </CardColumns>
-        </div>
-      ))
+          ))}
+        </CardGroup>
+      </Container>
     );
   };
 
@@ -79,52 +81,66 @@ export default function FoodDetails({ match, match: { params: { id } }, history 
     } = details.meals[0];
 
     return (
-      <main>
-        <CardColumns>
-          <Card>
+      <main className="general-background-color">
+        <CardColumns className="d-flex justify-content-center">
+          <Card style={ { width: '24rem' } }>
             <Card.Img
               variant="top"
               src={ strMealThumb }
               alt="Meal"
-              width="200px"
+              width="100px"
               data-testid="recipe-photo"
             />
             <Card.Body>
               <Card.Title data-testid="recipe-title">
-                {strMeal}
+                {`Name: ${strMeal}`}
               </Card.Title>
+              <Card.Text className="category" data-testid="recipe-category">
+                {`Category: ${strCategory}`}
+              </Card.Text>
             </Card.Body>
           </Card>
         </CardColumns>
-        <Button
-          variant="outline-warning"
-          type="button"
-          data-testid="share-btn"
-          onClick={ () => setIsCopied(copyLink(match, isCopied)) }
-        >
-          {isCopied ? 'Link copiado!' : <img src={ shareIcon } alt="Share" />}
-        </Button>
-        <Button
-          variant="outline-danger"
-          type="button"
-          onClick={ () => setRefresh(settingFavorite(details, id, refresh)) }
-        >
-          <img
-            alt="Favorite"
-            src={ verifyFavorite(id) }
-            data-testid="favorite-btn"
+        <section className="share-and-fav">
+          <Button
+            variant="outline-danger"
+            type="button"
+            data-testid="share-btn"
+            onClick={ () => setIsCopied(copyLink(match, isCopied)) }
+          >
+            {isCopied ? 'Link copiado!' : <img src={ shareIcon } alt="Share" />}
+          </Button>
+          <Button
+            variant="outline-danger"
+            type="button"
+            onClick={ () => setRefresh(settingFavorite(details, id, refresh)) }
+          >
+            <img
+              alt="Favorite"
+              src={ verifyFavorite(id) }
+              data-testid="favorite-btn"
+            />
+          </Button>
+        </section>
+        <br />
+        <Container>
+          <h3>Ingredients:</h3>
+          {loopIngredientsAndMeasure()}
+          <br />
+          <h3>Instrução:</h3>
+          <div className="instructions" data-testid="instructions">
+            {strInstructions}
+          </div>
+          <iframe
+            className="iframe"
+            data-testid="video"
+            src={ strYoutube.replace('watch?v=', 'embed/') }
+            width="300px"
+            title="Recipe"
           />
-        </Button>
-        <h3 className="category" data-testid="recipe-category">{strCategory}</h3>
-        <h5 data-testid="instructions">{strInstructions}</h5>
-        {loopIngredientsAndMeasure()}
-        <iframe
-          data-testid="video"
-          src={ strYoutube.replace('watch?v=', 'embed/') }
-          width="300px"
-          title="Recipe"
-        />
-        <h4 className="recomendations">Recomendações de Drinks</h4>
+        </Container>
+        <br />
+        <h3 className="recomendations">Recomendações de Drinks</h3>
         {loopRecomendationsDrinks()}
         <DecentFooter />
         {localStorageVerifier(match, id, history)}

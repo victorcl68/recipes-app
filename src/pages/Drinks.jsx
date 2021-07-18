@@ -59,14 +59,14 @@ export default function Drinks({ history }) {
   );
 
   return (
-    <>
-      <HeaderSearchButton />
+    <main className="general-background-color space-footer">
       <Header title="Bebidas" />
       <Container>
+        <HeaderSearchButton />
         {render ? manageRenderDrink(renderList) : <div>Loading...</div>}
       </Container>
       <Footer />
-    </>
+    </main>
   );
 }
 
