@@ -11,6 +11,7 @@ import { copyLink } from '../services/functions';
 
 export default function DrinkDetails({ match, match: { params: { id } }, history }) {
   const [isCopied, setIsCopied] = useState(false);
+  const [count, setCount] = useState(0);
   const [refresh, setRefresh] = useState(true);
   const {
     details,
@@ -38,16 +39,27 @@ export default function DrinkDetails({ match, match: { params: { id } }, history
     );
   }
 
+  const handleCount = (x) => {
+    const four = 4;
+    if (count === 0 && x === 'less') {
+      return setCount(four);
+    } if (count === four && x === 'more') {
+      return setCount(0);
+    } return x === 'more' ? setCount(count + 2) : setCount(count - 2);
+  };
+
   const loopRecomendationsFoods = () => {
     const recommendationsNumber = 6;
     const slicedRecommendations = meals.slice(0, recommendationsNumber);
     return (
       <Container>
-        <CardGroup>
+        <button type="button" onClick={ () => handleCount('less') }>{'<'}</button>
+        <button type="button" onClick={ () => handleCount('more') }>{'>'}</button>
+        <CardGroup className="d-flex justify-content-center">
           {slicedRecommendations.map((meal, index) => (
             <Card
               key={ index }
-              hidden={ index === 0 || index === 1 ? '' : 'true' }
+              hidden={ !(index === count || index === count + 1) }
               data-testid={ `${index}-recomendation-card` }
             >
               <Card.Img

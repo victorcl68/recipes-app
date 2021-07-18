@@ -11,6 +11,7 @@ import DecentFooter from '../components/DecentFooter';
 
 export default function FoodDetails({ match, match: { params: { id } }, history }) {
   const [isCopied, setIsCopied] = useState(false);
+  const [count, setCount] = useState(0);
   const [refresh, setRefresh] = useState(true);
   const {
     details,
@@ -38,30 +39,43 @@ export default function FoodDetails({ match, match: { params: { id } }, history 
     );
   }
 
+  const handleCount = (x) => {
+    const four = 4;
+    if (count === 0 && x === 'less') {
+      return setCount(four);
+    } if (count === four && x === 'more') {
+      return setCount(0);
+    } return x === 'more' ? setCount(count + 2) : setCount(count - 2);
+  };
+
   const loopRecomendationsDrinks = () => {
     const recommendationsNumber = 6;
     const slicedRecommendations = drinks.slice(0, recommendationsNumber);
     return (
-      <CardGroup>
-        {slicedRecommendations.map((drink, index) => (
-          <Card
-            key={ index }
-            hidden={ index === 0 || index === 1 ? '' : 'true' }
-            data-testid={ `${index}-recomendation-card` }
-          >
-            <Card.Img
-              variant="top"
-              src={ drink.strDrinkThumb }
-              alt="recommendation drink"
-            />
-            <Card.Body>
-              <Card.Title data-testid={ `${index}-recomendation-title` }>
-                {drink.strDrink}
-              </Card.Title>
-            </Card.Body>
-          </Card>
-        ))}
-      </CardGroup>
+      <Container>
+        <button type="button" onClick={ () => handleCount('less') }>{'<'}</button>
+        <button type="button" onClick={ () => handleCount('more') }>{'>'}</button>
+        <CardGroup className="d-flex justify-content-center">
+          {slicedRecommendations.map((drink, index) => (
+            <Card
+              key={ index }
+              hidden={ !(index === count || index === count + 1) }
+              data-testid={ `${index}-recomendation-card` }
+            >
+              <Card.Img
+                variant="top"
+                src={ drink.strDrinkThumb }
+                alt="recommendation drink"
+              />
+              <Card.Body>
+                <Card.Title data-testid={ `${index}-recomendation-title` }>
+                  {drink.strDrink}
+                </Card.Title>
+              </Card.Body>
+            </Card>
+          ))}
+        </CardGroup>
+      </Container>
     );
   };
 
