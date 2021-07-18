@@ -29,12 +29,6 @@ export default function BodyRecipesDone({ index, history, each }) {
             />
           </Card>
         </CardColumns>
-        {/* <img
-          data-testid={ `${index}-horizontal-image` }
-          alt="horizontal"
-          src={ each.image }
-          width="200px"
-        /> */}
       </Button>
       <h1
         data-testid={ `${index}-horizontal-top-text` }

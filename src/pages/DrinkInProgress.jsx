@@ -58,8 +58,6 @@ export default function DrinkInProgress({ match, history, match: { params: { id 
             </Card.Body>
           </Card>
         </CardColumns>
-        {/* <img data-testid="recipe-photo" src={ strDrinkThumb } alt="Drink" width="200px" />
-        <h1 data-testid="recipe-title">{strDrink}</h1> */}
         <section className="share-and-fav">
           <Button
             variant="outline-danger"

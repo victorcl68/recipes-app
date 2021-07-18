@@ -61,8 +61,6 @@ export default function FoodInProgress({ history, match, match: { params: { id }
             </Card.Body>
           </Card>
         </CardColumns>
-        {/* <img data-testid="recipe-photo" src={ strMealThumb } alt="Meal" width="200px" />
-        <h1 data-testid="recipe-title">{strMeal}</h1> */}
         <section className="share-and-fav">
           <Button
             variant="outline-danger"

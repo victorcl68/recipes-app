@@ -2,9 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ExitButton from './ExitButton';
 import home from '../images/home.png';
-// import drinkIcon from '../images/drinkIcon.svg';
-// import exploreIcon from '../images/exploreIcon.svg';
-// import mealIcon from '../images/mealIcon.svg';
 import '../App.css';
 
 export default function DecentFooter() {
