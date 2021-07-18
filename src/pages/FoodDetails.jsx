@@ -24,18 +24,14 @@ export default function FoodDetails({ match, match: { params: { id } }, history 
   }, []);
 
   function loopIngredientsAndMeasure() {
-    const IngredientsAndMeasures = generateIngredientsAndMeasure(details.meals[0]);
-    const mealArray = Object.keys(IngredientsAndMeasures.ingredient);
+    const { ingredient, measure } = generateIngredientsAndMeasure(details.meals[0]);
+    const mealArray = Object.keys(ingredient);
     return (
       mealArray.map((_a, index) => (
         <ListGroup key={ `ingredientAndMeasure${index + 1}` }>
-          <ListGroup.Item>
-            <span data-testid={ `${index}-ingredient-name-and-measure` }>
-              {`${IngredientsAndMeasures.ingredient[`strIngredient${index + 1}`]} - `}
-            </span>
-            <span data-testid={ `${index}-ingredient-name-and-measure` }>
-              {`${IngredientsAndMeasures.measure[`strMeasure${index + 1}`]}`}
-            </span>
+          <ListGroup.Item data-testid={ `${index}-ingredient-name-and-measure` }>
+            {`${ingredient[`strIngredient${index + 1}`]}
+            - ${measure[`strMeasure${index + 1}`]}`}
           </ListGroup.Item>
         </ListGroup>
       ))
@@ -46,28 +42,26 @@ export default function FoodDetails({ match, match: { params: { id } }, history 
     const recommendationsNumber = 6;
     const slicedRecommendations = drinks.slice(0, recommendationsNumber);
     return (
-      <Container>
-        <CardGroup>
-          {slicedRecommendations.map((drink, index) => (
-            <Card
-              key={ index }
-              hidden={ index === 0 || index === 1 ? '' : 'true' }
-              data-testid={ `${index}-recomendation-card` }
-            >
-              <Card.Img
-                variant="top"
-                src={ drink.strDrinkThumb }
-                alt="recommendation drink"
-              />
-              <Card.Body>
-                <Card.Title data-testid={ `${index}-recomendation-title` }>
-                  {drink.strDrink}
-                </Card.Title>
-              </Card.Body>
-            </Card>
-          ))}
-        </CardGroup>
-      </Container>
+      <CardGroup>
+        {slicedRecommendations.map((drink, index) => (
+          <Card
+            key={ index }
+            hidden={ index === 0 || index === 1 ? '' : 'true' }
+            data-testid={ `${index}-recomendation-card` }
+          >
+            <Card.Img
+              variant="top"
+              src={ drink.strDrinkThumb }
+              alt="recommendation drink"
+            />
+            <Card.Body>
+              <Card.Title data-testid={ `${index}-recomendation-title` }>
+                {drink.strDrink}
+              </Card.Title>
+            </Card.Body>
+          </Card>
+        ))}
+      </CardGroup>
     );
   };
 

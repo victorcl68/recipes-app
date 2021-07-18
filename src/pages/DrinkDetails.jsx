@@ -24,18 +24,14 @@ export default function DrinkDetails({ match, match: { params: { id } }, history
   }, []);
 
   function loopIngredientsAndMeasure() {
-    const IngredientsAndMeasures = generateIngredientsAndMeasure(details.drinks[0]);
-    const drinksArray = Object.keys(IngredientsAndMeasures.ingredient);
+    const { ingredient, measure } = generateIngredientsAndMeasure(details.drinks[0]);
+    const drinksArray = Object.keys(ingredient);
     return (
       drinksArray.map((_a, index) => (
         <ListGroup key={ `ingredientAndMeasure${index + 1}` }>
-          <ListGroup.Item>
-            <span data-testid={ `${index}-ingredient-name-and-measure` }>
-              {`${IngredientsAndMeasures.ingredient[`strIngredient${index + 1}`]} - `}
-            </span>
-            <span data-testid={ `${index}-ingredient-name-and-measure` }>
-              {IngredientsAndMeasures.measure[`strMeasure${index + 1}`]}
-            </span>
+          <ListGroup.Item data-testid={ `${index}-ingredient-name-and-measure` }>
+            {`${ingredient[`strIngredient${index + 1}`]}
+            - ${measure[`strMeasure${index + 1}`]}`}
           </ListGroup.Item>
         </ListGroup>
       ))
