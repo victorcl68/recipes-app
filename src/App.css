@@ -1,13 +1,57 @@
+/*
+#iceLeft {
+  animation: clink .8s infinite ease;
+  opacity: 0.6;
+  transform-origin: 36px 66px;
+}
+
+#iceRight {
+  animation: clink .8s .2s infinite ease;
+  opacity: 0.6;
+  transform-origin: 60px 78px;
+}
+*/
+
+@keyframes shake {
+
+  0% {
+    transform: rotate(5deg);
+  }
+
+  50% {
+    transform: rotate(-5deg);
+  }
+
+  100% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes clink {
+
+  0% {
+    transform: rotate(-10deg);
+  }
+
+  50% {
+    transform: rotate(20deg);
+  }
+
+  100% {
+    transform: rotate(-10deg);
+  }
+}
+
 .meals {
   align-items: center;
-  background: #0fa36b;
+  background: #f1c232;
   color: #464646;
   display: flex;
   flex-direction: column;
   font-family: sans-serif;
   height: 100vh;
   justify-content: center;
-  width: 100%;
+  width: 100vw;
 }
 
 .rocksGlass {
@@ -38,56 +82,13 @@
   text-decoration: none solid black;
 }
 
-/*
-#iceLeft {
-  animation: clink .8s infinite ease;
-  opacity: 0.6;
-  transform-origin: 36px 66px;
-}
-
-#iceRight {
-  animation: clink .8s .2s infinite ease;
-  opacity: 0.6;
-  transform-origin: 60px 78px;
-}
-*/
-
 .meals > .logo {
   animation: shake 1.5s infinite ease;
   color: aliceblue;
   font-family: Montserrat , sans-serif;
-  font-size: 3em;
+  font-size: 2em;
   font-weight: 900;
-}
-
-@keyframes shake {
-
-  0% {
-    transform: rotate(5deg);
-  }
-
-  50% {
-    transform: rotate(-5deg);
-  }
-
-  100% {
-    transform: rotate(5deg);
-  }
-}
-
-@keyframes clink {
-
-  0% {
-    transform: rotate(-10deg);
-  }
-
-  50% {
-    transform: rotate(20deg);
-  }
-
-  100% {
-    transform: rotate(-10deg);
-  }
+  text-align: center;
 }
 
 .footer-generic {
@@ -141,4 +142,31 @@
 
 .category, .recomendations {
   font-weight: 600;
+  text-align: center;
+}
+
+.instructions {
+  margin-left: 5px;
+}
+
+.share-and-fav {
+  text-align: center;
+}
+
+.iframe {
+  margin-left: 25px;
+}
+
+.profile-email {
+  text-align: center;
+}
+
+.buttons-profile, .buttons-done, .buttons-fav {
+  text-align: center;
+}
+
+.recipe-book {
+  width: 225px;
+  margin-bottom: 15px;
+  margin-top: 10px;
 }

@@ -38,30 +38,32 @@ export default function RecipesDone({ history }) {
   return (
     <article>
       <Header title="Receitas Feitas" />
-      <Button
-        variant="outline-dark"
-        data-testid="filter-by-all-btn"
-        onClick={ () => attStateFilter(0) }
-        type="button"
-      >
-        Todas
-      </Button>
-      <Button
-        variant="outline-dark"
-        data-testid="filter-by-food-btn"
-        onClick={ () => attStateFilter(1) }
-        type="button"
-      >
-        Comidas
-      </Button>
-      <Button
-        variant="outline-dark"
-        data-testid="filter-by-drink-btn"
-        onClick={ () => attStateFilter(2) }
-        type="button"
-      >
-        Bebidas
-      </Button>
+      <section className="buttons-done">
+        <Button
+          variant="outline-dark"
+          data-testid="filter-by-all-btn"
+          onClick={ () => attStateFilter(0) }
+          type="button"
+        >
+          Todas
+        </Button>
+        <Button
+          variant="outline-dark"
+          data-testid="filter-by-food-btn"
+          onClick={ () => attStateFilter(1) }
+          type="button"
+        >
+          Comidas
+        </Button>
+        <Button
+          variant="outline-dark"
+          data-testid="filter-by-drink-btn"
+          onClick={ () => attStateFilter(2) }
+          type="button"
+        >
+          Bebidas
+        </Button>
+      </section>
       {destructuredStorage ? renderFilteredList() : null}
       <DecentFooter />
     </article>

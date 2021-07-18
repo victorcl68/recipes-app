@@ -19,7 +19,6 @@ export default function ExploreFoodsIngredients() {
 
   return isRedirect ? <Redirect to="/comidas" /> : (
     <>
-      <div>Tela de explorar comidas ingredientes</div>
       <Header title="Explorar Ingredientes" />
       <Container>
         <Row>

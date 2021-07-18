@@ -6,7 +6,6 @@ import Footer from '../components/Footer';
 export default function ExploreFoodsArea() {
   return (
     <>
-      <div>Tela de explorar comidas area</div>
       <Header title="Explorar Origem" />
       <HeaderSearchButton />
       <Footer />

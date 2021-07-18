@@ -22,7 +22,6 @@ export default function ExploreFoods() {
 
   return redirectTo ? <Redirect to={ redirectTo } /> : (
     <>
-      <div>Tela de explorar comidas</div>
       <Header title="Explorar Comidas" />
       {renderExporeBtn(handleRedirect)}
       <Footer />

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
+import { Button, Card, CardColumns } from 'react-bootstrap';
 import loopIngredientsAndMeasure from '../components/loopIngredientsAndMeasure';
 import Context from '../context/Context';
 import DecentFooter from '../components/DecentFooter';
@@ -41,42 +42,61 @@ export default function DrinkInProgress({ match, history, match: { params: { id 
 
     return (
       <main>
-        <img data-testid="recipe-photo" src={ strDrinkThumb } alt="Drink" width="200px" />
-        <h1 data-testid="recipe-title">{strDrink}</h1>
-        <button
-          type="button"
-          data-testid="share-btn"
-          onClick={ () => setIsCopied(copyLinkInProgress(match, isCopied)) }
-        >
-
-          <img src={ shareIcon } alt="Share" />
-        </button>
-        {isCopied && <spam>Link copiado!</spam>}
-        <button
-          type="button"
-          onClick={ () => setRefresh(settingFavorite(details, id, refresh)) }
-        >
-          <img
-            alt="Favorite"
-            src={ verifyFavorite(id) }
-            data-testid="favorite-btn"
-          />
-        </button>
-        <p data-testid="recipe-category">{strCategory}</p>
-        <span data-testid="instructions">{strInstructions}</span>
+        <CardColumns>
+          <Card>
+            <Card.Img
+              variant="top"
+              src={ strDrinkThumb }
+              alt="Drink"
+              width="200px"
+              data-testid="recipe-photo"
+            />
+            <Card.Body>
+              <Card.Title data-testid="recipe-title">
+                {strDrink}
+              </Card.Title>
+            </Card.Body>
+          </Card>
+        </CardColumns>
+        {/* <img data-testid="recipe-photo" src={ strDrinkThumb } alt="Drink" width="200px" />
+        <h1 data-testid="recipe-title">{strDrink}</h1> */}
+        <section className="share-and-fav">
+          <Button
+            variant="outline-warning"
+            type="button"
+            data-testid="share-btn"
+            onClick={ () => setIsCopied(copyLinkInProgress(match, isCopied)) }
+          >
+            <img src={ shareIcon } alt="Share" />
+          </Button>
+          {isCopied ? <p>Link copiado!</p> : null }
+          <Button
+            variant="outline-danger"
+            type="button"
+            onClick={ () => setRefresh(settingFavorite(details, id, refresh)) }
+          >
+            <img
+              alt="Favorite"
+              src={ verifyFavorite(id) }
+              data-testid="favorite-btn"
+            />
+          </Button>
+        </section>
+        <h3 className="category" data-testid="recipe-category">{strCategory}</h3>
+        <h5 className="instructions" data-testid="instructions">{strInstructions}</h5>
         {loopIngredientsAndMeasure(drinkArray,
           IngredientsAndMeasures,
           id,
           [refresh, setRefresh])}
-        <h3>Recomendações de Drinks</h3>
-        <button
+        <Button
+          variant="dark"
           onClick={ () => finishRecipe(id, details.drinks, history) }
           disabled={ disableFinishRecipeButton(id) }
           data-testid="finish-recipe-btn"
           type="button"
         >
           Finalizar Receita
-        </button>
+        </Button>
         <DecentFooter />
       </main>
     );
