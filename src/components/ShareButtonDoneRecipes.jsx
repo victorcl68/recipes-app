@@ -9,7 +9,7 @@ export default function ShareButtonDoneRecipes({ templateString, index }) {
   return (
     <div>
       <Button
-        variant="outline-warning"
+        variant="outline-danger"
         type="button"
         onClick={ () => setIsCopied(
           copyLinkDoneRecipes(templateString, isCopied),

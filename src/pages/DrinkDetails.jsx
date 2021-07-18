@@ -99,7 +99,7 @@ export default function DrinkDetails({ match, match: { params: { id } }, history
         </CardColumns>
         <section className="share-and-fav">
           <Button
-            variant="outline-warning"
+            variant="outline-danger"
             type="button"
             data-testid="share-btn"
             onClick={ () => setIsCopied(copyLink(match, isCopied)) }

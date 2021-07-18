@@ -65,7 +65,7 @@ export default function FoodInProgress({ history, match, match: { params: { id }
         <h1 data-testid="recipe-title">{strMeal}</h1> */}
         <section className="share-and-fav">
           <Button
-            variant="outline-warning"
+            variant="outline-danger"
             type="button"
             data-testid="share-btn"
             onClick={ () => setIsCopied(copyLinkInProgress(match, isCopied)) }
