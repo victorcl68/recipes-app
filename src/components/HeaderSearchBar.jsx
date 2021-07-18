@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Form, Button, InputGroup, FormControl, Container, Row, Col }
+import { Form, Button, FormControl, Container }
   from 'react-bootstrap';
 import Context from '../context/Context';
 
@@ -20,95 +20,64 @@ export default function HeaderSearchBar() {
     }
   }, [searchText, chosenFilter]);
 
-  const pesquisar = (
-    <Container fluid="sm">
-      <InputGroup className="mb-2" htmlFor="search">
+  return (
+    <Form>
+      <Container className="d-flex">
         <FormControl
-          aria-label="Pesquisar"
-          value={ searchText }
-          onChange={ handleChange }
           name="searchText"
+          data-testid="search-input"
           id="search"
           type="search"
-          data-testid="search-input"
+          value={ searchText }
+          onChange={ handleChange }
+          placeholder="Search"
+          className="mr-2"
+          aria-label="Pesquisar"
         />
         <Button
           onClick={ blockRequest
             ? () => global.alert('Sua busca deve conter somente 1 (um) caracter')
             : () => asyncSetState() }
-          type="button"
           data-testid="exec-search-btn"
         >
           Pesquisar
         </Button>
-      </InputGroup>
-    </Container>
-  );
-
-  const ingrediente = (
-    <Col>
-      <Form.Check
-        label="Ingrediente"
-        value="filter.php?i="
-        onChange={ handleChange }
-        name="chosenFilter"
-        required
-        id="ingredient"
-        type="radio"
-        data-testid="ingredient-search-radio"
-      />
-    </Col>
-  );
-
-  const porNome = (
-    <Col>
-      <Form.Check
-        defaultChecked
-        label="Nome"
-        value="search.php?s="
-        onChange={ handleChange }
-        name="chosenFilter"
-        required
-        id="name"
-        type="radio"
-        data-testid="name-search-radio"
-      />
-    </Col>
-  );
-
-  const porLetra = (
-    <Col>
-      <Form.Check
-        label="Primeira Letra"
-        value="search.php?f="
-        onChange={ handleChange }
-        name="chosenFilter"
-        id="first-letter"
-        required
-        type="radio"
-        data-testid="first-letter-search-radio"
-      />
-    </Col>
-  );
-
-  const porLocal = (
-    <Col>
-      <span>Local: </span>
-      <select aria-label="Default select example" />
-    </Col>
-  );
-
-  return (
-    <Form>
-      <br />
-      {pesquisar}
-      <Container>
-        <Row>
-          {ingrediente}
-          {porNome}
-          {porLetra}
-          {porLocal}
-        </Row>
+      </Container>
+      <Container className="d-flex justify-content-around">
+        <Form.Check
+          label="Ingrediente"
+          value="filter.php?i="
+          onChange={ handleChange }
+          name="chosenFilter"
+          required
+          id="ingredient"
+          type="radio"
+          data-testid="ingredient-search-radio"
+        />
+        <Form.Check
+          defaultChecked
+          label="Nome"
+          value="search.php?s="
+          onChange={ handleChange }
+          name="chosenFilter"
+          required
+          id="name"
+          type="radio"
+          data-testid="name-search-radio"
+        />
+        <Form.Check
+          label="Primeira Letra"
+          value="search.php?f="
+          onChange={ handleChange }
+          name="chosenFilter"
+          id="first-letter"
+          required
+          type="radio"
+          data-testid="first-letter-search-radio"
+        />
+        {/* <DropdownButton id="dropdown-basic-button" title="Area">
+          <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+        </DropdownButton> */}
       </Container>
     </Form>
   );

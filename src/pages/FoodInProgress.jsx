@@ -68,9 +68,8 @@ export default function FoodInProgress({ history, match, match: { params: { id }
             data-testid="share-btn"
             onClick={ () => setIsCopied(copyLinkInProgress(match, isCopied)) }
           >
-            <img src={ shareIcon } alt="Share" />
+            {isCopied ? 'Link copiado!' : <img src={ shareIcon } alt="Share" />}
           </Button>
-          {isCopied ? <p>Link copiado!</p> : null }
           <Button
             variant="outline-danger"
             type="button"

@@ -8,32 +8,24 @@ import initialData from '../data/initialData';
 
 export default function GlobalProvider({ children }) {
   const { initialParams, mealEP, cocktailEP, filtersBy } = initialData;
-
   const [baseEndPoint, setBaseEndPoint] = useState(mealEP);
   const [requestParams, setRequestParams] = useState(initialParams);
   const [filterList, setFilterList] = useState(filtersBy);
   const [initialRecipes, setInitialRecipes] = useState({ drinks: [], meals: [] });
   const [recipesRender, setRecipesRender] = useState({ drinks: [], meals: [] });
   const [details, setDetails] = useState({});
-  const [toggle, setToggle] = useState({
-    categoryName: '', status: false });
+  const [toggle, setToggle] = useState({ categoryName: '', status: false });
   const [refresh, setRefresh] = useState(true);
 
   useEffect(() => {
     async function fetchInitialData() {
-      const { chosenFilter, searchText } = initialParams;
-      const resultMeals = await fetchAPI(mealEP, chosenFilter, searchText);
-      const resultDrinks = await fetchAPI(cocktailEP, chosenFilter, searchText);
+      const requestResults = await fetchAPI();
       setFilterList({ ...filterList,
-        categories: await getFilters('list.php?c='),
-        ingredients: await getFilters('list.php?i='),
-        area: await getFilters('list.php?a=') });
-      setInitialRecipes({
-        meals: Object.values(resultMeals)[0],
-        drinks: Object.values(resultDrinks)[0] });
-      setRecipesRender({
-        meals: resultMeals.meals,
-        drinks: resultDrinks.drinks });
+        categories: await getFilters(mealEP, cocktailEP, 'list.php?c=list'),
+        ingredients: await getFilters(mealEP, cocktailEP, 'list.php?i=list'),
+        area: await getFilters(mealEP, cocktailEP, 'list.php?a=list') });
+      setInitialRecipes(requestResults);
+      setRecipesRender(requestResults);
     } fetchInitialData();
   }, []);
 
@@ -63,7 +55,7 @@ export default function GlobalProvider({ children }) {
   const resetParams = () => {
     if (initialRecipes.meals.length > 0) setRecipesRender(initialRecipes);
     setRequestParams(initialParams);
-  }; // usar isso para resolver permanencia dos parametros quando alterna entre drinks e foods
+  };
 
   const manageRenderMeal = (cardList) => {
     const { meals } = recipesRender;

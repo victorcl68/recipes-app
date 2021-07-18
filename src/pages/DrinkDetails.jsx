@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
-import { Button, Card, CardColumns } from 'react-bootstrap';
+import { Button, Card, CardColumns, CardGroup, Container, ListGroup }
+  from 'react-bootstrap';
 import Context from '../context/Context';
 import DecentFooter from '../components/DecentFooter';
 import shareIcon from '../images/shareIcon.svg';
@@ -27,16 +28,16 @@ export default function DrinkDetails({ match, match: { params: { id } }, history
     const drinksArray = Object.keys(IngredientsAndMeasures.ingredient);
     return (
       drinksArray.map((_a, index) => (
-        <ul key={ `ingredientAndMeasure${index + 1}` }>
-          <li>
+        <ListGroup key={ `ingredientAndMeasure${index + 1}` }>
+          <ListGroup.Item>
             <span data-testid={ `${index}-ingredient-name-and-measure` }>
               {`${IngredientsAndMeasures.ingredient[`strIngredient${index + 1}`]} - `}
             </span>
             <span data-testid={ `${index}-ingredient-name-and-measure` }>
               {IngredientsAndMeasures.measure[`strMeasure${index + 1}`]}
             </span>
-          </li>
-        </ul>
+          </ListGroup.Item>
+        </ListGroup>
       ))
     );
   }
@@ -45,19 +46,18 @@ export default function DrinkDetails({ match, match: { params: { id } }, history
     const recommendationsNumber = 6;
     const slicedRecommendations = meals.slice(0, recommendationsNumber);
     return (
-      slicedRecommendations.map((meal, index) => (
-        <div
-          className={ index === 0 || index === 1 ? '' : 'carousel' }
-          key={ index }
-          data-testid={ `${index}-recomendation-card` }
-        >
-          <CardColumns>
-            <Card>
+      <Container>
+        <CardGroup>
+          {slicedRecommendations.map((meal, index) => (
+            <Card
+              key={ index }
+              hidden={ index === 0 || index === 1 ? '' : 'true' }
+              data-testid={ `${index}-recomendation-card` }
+            >
               <Card.Img
                 variant="top"
                 src={ meal.strMealThumb }
                 alt="recommendation meal"
-                width="150px"
               />
               <Card.Body>
                 <Card.Title data-testid={ `${index}-recomendation-title` }>
@@ -65,9 +65,9 @@ export default function DrinkDetails({ match, match: { params: { id } }, history
                 </Card.Title>
               </Card.Body>
             </Card>
-          </CardColumns>
-        </div>
-      ))
+          ))}
+        </CardGroup>
+      </Container>
     );
   };
 
@@ -81,8 +81,8 @@ export default function DrinkDetails({ match, match: { params: { id } }, history
 
     return (
       <main className="general-background-color">
-        <CardColumns>
-          <Card>
+        <CardColumns className="d-flex justify-content-center">
+          <Card style={ { width: '24rem' } }>
             <Card.Img
               variant="top"
               src={ strDrinkThumb }
@@ -92,8 +92,11 @@ export default function DrinkDetails({ match, match: { params: { id } }, history
             />
             <Card.Body>
               <Card.Title data-testid="recipe-title">
-                {strDrink}
+                {`Name: ${strDrink}`}
               </Card.Title>
+              <Card.Text className="category" data-testid="recipe-category">
+                {`Category: ${strAlcoholic}`}
+              </Card.Text>
             </Card.Body>
           </Card>
         </CardColumns>
@@ -104,9 +107,8 @@ export default function DrinkDetails({ match, match: { params: { id } }, history
             data-testid="share-btn"
             onClick={ () => setIsCopied(copyLink(match, isCopied)) }
           >
-            <img src={ shareIcon } alt="Share" />
+            {isCopied ? 'Link copiado!' : <img src={ shareIcon } alt="Share" />}
           </Button>
-          {isCopied ? <p>Link copiado!</p> : null }
           <Button
             variant="outline-danger"
             type="button"
@@ -119,12 +121,18 @@ export default function DrinkDetails({ match, match: { params: { id } }, history
             />
           </Button>
         </section>
-        <h3 className="category" data-testid="recipe-category">
-          {strAlcoholic}
-        </h3>
-        <h5 className="instructions" data-testid="instructions">{strInstructions}</h5>
-        {loopIngredientsAndMeasure()}
-        <h4 className="recomendations">Recomendações de Comidas</h4>
+        <br />
+        <Container>
+          <h3>Ingredientes:</h3>
+          {loopIngredientsAndMeasure()}
+          <br />
+          <h3>Instrução:</h3>
+          <div className="instructions" data-testid="instructions">
+            {strInstructions}
+          </div>
+        </Container>
+        <br />
+        <h3 className="recomendations">Recomendações de Comidas</h3>
         {loopRecomendationsFoods()}
         <DecentFooter />
         {localStorageVerifier(match, id, history)}

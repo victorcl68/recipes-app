@@ -59,10 +59,10 @@ export default function Foods({ history }) {
   );
 
   return (
-    <main className="general-background-color">
-      <HeaderSearchButton />
+    <main className="general-background-color space-footer">
       <Header title="Comidas" />
       <Container>
+        <HeaderSearchButton />
         {render ? manageRenderMeal(renderList) : <div>Loading</div>}
       </Container>
       <Footer />

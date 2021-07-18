@@ -12,6 +12,10 @@
 }
 */
 
+.space-footer {
+  margin-bottom: 3%;
+}
+
 @keyframes shake {
 
   0% {
@@ -57,10 +61,6 @@
 .rocksGlass {
   animation: shake 1s infinite ease;
   max-height: 80vh;
-}
-
-.carousel {
-  display: none;
 }
 
 .start-recipe {
@@ -127,7 +127,6 @@
 }
 
 .card-columns {
-  margin-bottom: 40px;
   padding: 20px;
 }
 
@@ -147,6 +146,7 @@
 
 .instructions {
   margin-left: 5px;
+  text-align: justify;
 }
 
 .share-and-fav {
@@ -154,7 +154,7 @@
 }
 
 .iframe {
-  margin-left: 25px;
+  margin: 20px 0;
 }
 
 .profile-email {
