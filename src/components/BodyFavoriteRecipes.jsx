@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button, CardColumns } from 'react-bootstrap';
+import { Card, Button, CardColumns, Container } from 'react-bootstrap';
 import { PropTypes } from 'prop-types';
 import ShareButtonDoneRecipes from './ShareButtonDoneRecipes';
 
@@ -31,20 +31,22 @@ export default function BodyFavoriteRecipes({ index, history, each }) {
           </Card>
         </CardColumns>
       </Button>
-      <h1
-        data-testid={ `${index}-horizontal-top-text` }
-      >
-        {AlcoholicAreaCategory}
-      </h1>
-      <Button
-        variant="outline-dark"
-        data-testid={ `${index}-horizontal-name` }
-        type="button"
-        onClick={ () => history.push(templateString) }
-      >
-        {each.name}
-      </Button>
-      <ShareButtonDoneRecipes templateString={ templateString } index={ index } />
+      <Container>
+        <h1
+          data-testid={ `${index}-horizontal-top-text` }
+        >
+          {AlcoholicAreaCategory}
+        </h1>
+        <Button
+          variant="outline-dark"
+          data-testid={ `${index}-horizontal-name` }
+          type="button"
+          onClick={ () => history.push(templateString) }
+        >
+          {each.name}
+        </Button>
+        <ShareButtonDoneRecipes templateString={ templateString } index={ index } />
+      </Container>
     </section>);
 }
 

@@ -55,6 +55,7 @@ export default function DrinkDetails({ match, match: { params: { id } }, history
       <Container>
         <Button
           variant="info"
+          className="button-carousel"
           type="button"
           onClick={ () => handleCount('less') }
         >
@@ -62,6 +63,7 @@ export default function DrinkDetails({ match, match: { params: { id } }, history
         </Button>
         <Button
           variant="info"
+          className="button-carousel"
           type="button"
           onClick={ () => handleCount('more') }
         >

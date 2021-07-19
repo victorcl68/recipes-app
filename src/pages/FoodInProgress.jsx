@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
-import { Button, Card, CardColumns } from 'react-bootstrap';
+import { Button, Card, CardColumns, Container } from 'react-bootstrap';
 import loopIngredientsAndMeasure from '../components/loopIngredientsAndMeasure';
 import Context from '../context/Context';
 import { copyLinkInProgress } from '../services/functions';
@@ -82,19 +82,21 @@ export default function FoodInProgress({ history, match, match: { params: { id }
             />
           </Button>
         </section>
-        <h3 className="category" data-testid="recipe-category">{strCategory}</h3>
-        <h5 className="instructions" data-testid="instructions">{strInstructions}</h5>
-        {loopIngredientsAndMeasure(mealArray,
-          IngredientsAndMeasures,
-          id,
-          [refresh, setRefresh])}
-        <iframe
-          className="iframe"
-          data-testid="video"
-          src={ strYoutube.replace('watch?v=', 'embed/') }
-          width="300px"
-          title="Recipe"
-        />
+        <Container>
+          <h3 className="category" data-testid="recipe-category">{strCategory}</h3>
+          <h5 className="instructions" data-testid="instructions">{strInstructions}</h5>
+          {loopIngredientsAndMeasure(mealArray,
+            IngredientsAndMeasures,
+            id,
+            [refresh, setRefresh])}
+          <iframe
+            className="iframe"
+            data-testid="video"
+            src={ strYoutube.replace('watch?v=', 'embed/') }
+            width="300px"
+            title="Recipe"
+          />
+        </Container>
         <DecentFooter />
         <Button
           variant="dark"

@@ -154,7 +154,8 @@
 }
 
 .iframe {
-  margin: 20px 0;
+  margin-top: 8px;
+  text-align: center;
 }
 
 .profile-email {
@@ -186,4 +187,12 @@
 
 .button-carousel {
   margin: 5px;
+}
+
+.checkboxes {
+  margin: 0 15px;
+}
+
+.favorite-btn-page {
+  text-align: center;
 }

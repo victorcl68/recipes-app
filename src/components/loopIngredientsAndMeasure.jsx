@@ -14,36 +14,33 @@ export default function loopIngredientsAndMeasure(
 ) {
   return (
     mealOrDrinkArray.map((_a, index) => (
-    //   <ListGroup key={ `ingredientAndMeasure${index + 1}` }>
-    //   <ListGroup.Item data-testid={ `${index}-ingredient-name-and-measure` }>
-    //     {`${ingredient[`strIngredient${index + 1}`]}
-    //     - ${measure[`strMeasure${index + 1}`]}`}
-    //   </ListGroup.Item>
-    // </ListGroup>
       <ListGroup
         className={ storageCheckGenerator(id, index) ? 'showCss' : 'hideCss' }
         data-testid={ `${index}-ingredient-step` }
         key={ `ingredientAndMeasure${index + 1}` }
       >
-        <ListGroup.Item>
-          <input
-            defaultChecked={ checkBoolean(id, index) }
-            className={ checkBoolean(id, index) ? 'showCss' : 'hideCss' }
-            key={ index }
-            type="checkbox"
-            onClick={ () => {
-              setRefresh(storageCheckUpdater(id, index, refresh));
-            } }
-          />
-          <span className={ checkBoolean(id, index) ? 'showCss' : 'hideCss' }>
-            {' '}
-            {IngredientsAndMeasures.ingredient[`strIngredient${index + 1}`]}
-          </span>
-          <span
-            className={ checkBoolean(id, index) ? 'showCss' : 'hideCss' }
-          >
-            {IngredientsAndMeasures.measure[`strMeasure${index + 1}`]}
-          </span>
+        <ListGroup.Item className="checkboxes">
+          <label htmlFor={ `${index}checkobox` }>
+            <input
+              id={ `${index}checkobox` }
+              defaultChecked={ checkBoolean(id, index) }
+              className={ checkBoolean(id, index) ? 'showCss' : 'hideCss' }
+              key={ index }
+              type="checkbox"
+              onClick={ () => {
+                setRefresh(storageCheckUpdater(id, index, refresh));
+              } }
+            />
+            <span className={ checkBoolean(id, index) ? 'showCss' : 'hideCss' }>
+              {' '}
+              {IngredientsAndMeasures.ingredient[`strIngredient${index + 1}`]}
+            </span>
+            <span
+              className={ checkBoolean(id, index) ? 'showCss' : 'hideCss' }
+            >
+              {IngredientsAndMeasures.measure[`strMeasure${index + 1}`]}
+            </span>
+          </label>
         </ListGroup.Item>
       </ListGroup>
     ))
