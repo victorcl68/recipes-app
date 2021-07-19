@@ -8,6 +8,7 @@ import shareIcon from '../images/shareIcon.svg';
 import { localStorageVerifier,
   verifyFavorite, settingFavorite } from '../services/manageLocalStorage';
 import { copyLink } from '../services/functions';
+import LoadingImg from '../components/LoadingImg';
 
 export default function DrinkDetails({ match, match: { params: { id } }, history }) {
   const [isCopied, setIsCopied] = useState(false);
@@ -54,7 +55,7 @@ export default function DrinkDetails({ match, match: { params: { id } }, history
     return (
       <Container>
         <Button
-          variant="info"
+          // variant="info"
           className="button-carousel"
           type="button"
           onClick={ () => handleCount('less') }
@@ -62,7 +63,7 @@ export default function DrinkDetails({ match, match: { params: { id } }, history
           {'<'}
         </Button>
         <Button
-          variant="info"
+          // variant="info"
           className="button-carousel"
           type="button"
           onClick={ () => handleCount('more') }
@@ -162,7 +163,7 @@ export default function DrinkDetails({ match, match: { params: { id } }, history
     );
   }
   return (
-    <p className="loading-text">Loading...</p>
+    LoadingImg()
   );
 }
 

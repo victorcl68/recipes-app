@@ -8,6 +8,7 @@ import HeaderSearchButton from '../components/HeaderSearchButton';
 import Footer from '../components/Footer';
 import RecipeCard from '../components/RecipeCard';
 import CategoryBtn from '../components/CategoryBtn';
+import LoadingImg from '../components/LoadingImg';
 
 export default function Drinks({ history }) {
   const {
@@ -65,7 +66,7 @@ export default function Drinks({ history }) {
         <HeaderSearchButton />
         {render
           ? manageRenderDrink(renderList)
-          : <div className="loading-text">Loading...</div>}
+          : LoadingImg()}
       </Container>
       <Footer />
     </main>
