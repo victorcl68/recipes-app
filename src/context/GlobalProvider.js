@@ -114,9 +114,7 @@ export default function GlobalProvider({ children }) {
         handleRender(result);
       }
     }
-    return global.alert(
-      'Sinto muito, não encontramos nenhuma receita para esses filtros.',
-    );
+    return null;
   };
 
   const detailsSyncSetState = async (endPoint) => {
