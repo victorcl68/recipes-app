@@ -11,6 +11,7 @@ import DecentFooter from '../components/DecentFooter';
 
 export default function FoodDetails({ match, match: { params: { id } }, history }) {
   const [isCopied, setIsCopied] = useState(false);
+  const [count, setCount] = useState(0);
   const [refresh, setRefresh] = useState(true);
   const {
     details,
@@ -24,34 +25,55 @@ export default function FoodDetails({ match, match: { params: { id } }, history 
   }, []);
 
   function loopIngredientsAndMeasure() {
-    const IngredientsAndMeasures = generateIngredientsAndMeasure(details.meals[0]);
-    const mealArray = Object.keys(IngredientsAndMeasures.ingredient);
+    const { ingredient, measure } = generateIngredientsAndMeasure(details.meals[0]);
+    const mealArray = Object.keys(ingredient);
     return (
       mealArray.map((_a, index) => (
         <ListGroup key={ `ingredientAndMeasure${index + 1}` }>
-          <ListGroup.Item>
-            <span data-testid={ `${index}-ingredient-name-and-measure` }>
-              {`${IngredientsAndMeasures.ingredient[`strIngredient${index + 1}`]} - `}
-            </span>
-            <span data-testid={ `${index}-ingredient-name-and-measure` }>
-              {`${IngredientsAndMeasures.measure[`strMeasure${index + 1}`]}`}
-            </span>
+          <ListGroup.Item data-testid={ `${index}-ingredient-name-and-measure` }>
+            {`${ingredient[`strIngredient${index + 1}`]}
+            - ${measure[`strMeasure${index + 1}`]}`}
           </ListGroup.Item>
         </ListGroup>
       ))
     );
   }
 
+  const handleCount = (x) => {
+    const four = 4;
+    if (count === 0 && x === 'less') {
+      return setCount(four);
+    } if (count === four && x === 'more') {
+      return setCount(0);
+    } return x === 'more' ? setCount(count + 2) : setCount(count - 2);
+  };
+
   const loopRecomendationsDrinks = () => {
     const recommendationsNumber = 6;
     const slicedRecommendations = drinks.slice(0, recommendationsNumber);
     return (
       <Container>
-        <CardGroup>
+        <Button
+          variant="info"
+          className="button-carousel"
+          type="button"
+          onClick={ () => handleCount('less') }
+        >
+          {'<'}
+        </Button>
+        <Button
+          variant="info"
+          className="button-carousel"
+          type="button"
+          onClick={ () => handleCount('more') }
+        >
+          {'>'}
+        </Button>
+        <CardGroup className="d-flex justify-content-center">
           {slicedRecommendations.map((drink, index) => (
             <Card
               key={ index }
-              hidden={ index === 0 || index === 1 ? '' : 'true' }
+              hidden={ !(index === count || index === count + 1) }
               data-testid={ `${index}-recomendation-card` }
             >
               <Card.Img
@@ -148,7 +170,7 @@ export default function FoodDetails({ match, match: { params: { id } }, history 
     );
   }
   return (
-    <p>Loading...</p>
+    <p className="loading-text">Loading...</p>
   );
 }
 

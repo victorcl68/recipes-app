@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useState, useEffect } from 'react';
+import { Container } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -23,7 +24,9 @@ export default function ExploreDrinks() {
   return redirectTo ? <Redirect to={ redirectTo } /> : (
     <main className="general-background-color">
       <Header title="Explorar Bebidas" />
-      {renderExporeBtn(handleRedirect, 'drinks')}
+      <Container className="explore-buttons">
+        {renderExporeBtn(handleRedirect, 'drinks')}
+      </Container>
       <Footer />
     </main>
   );

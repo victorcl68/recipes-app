@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, CardColumns } from 'react-bootstrap';
+import { Button, Card, CardColumns, Container } from 'react-bootstrap';
 import { PropTypes } from 'prop-types';
 import ShareButtonDoneRecipes from './ShareButtonDoneRecipes';
 
@@ -30,23 +30,25 @@ export default function BodyRecipesDone({ index, history, each }) {
           </Card>
         </CardColumns>
       </Button>
-      <h1
-        data-testid={ `${index}-horizontal-top-text` }
-      >
-        {AlcoholicAreaCategory}
-      </h1>
-      <Button
-        variant="outline-dark"
-        data-testid={ `${index}-horizontal-name` }
-        type="button"
-        onClick={ () => history.push(templateString) }
-      >
-        {each.name}
-      </Button>
-      <ShareButtonDoneRecipes templateString={ templateString } index={ index } />
-      <h4 data-testid={ `${index}-horizontal-done-date` }>{each.doneDate}</h4>
-      <h4 data-testid={ `${index}-Pasta-horizontal-tag` }>{each.tags[0]}</h4>
-      <h4 data-testid={ `${index}-Curry-horizontal-tag` }>{each.tags[1]}</h4>
+      <Container>
+        <Button
+          variant="outline-dark"
+          data-testid={ `${index}-horizontal-name` }
+          type="button"
+          onClick={ () => history.push(templateString) }
+        >
+          <h1 className="h1-done-fav">{each.name}</h1>
+        </Button>
+        <h3 data-testid={ `${index}-Pasta-horizontal-tag` }>{each.tags[0]}</h3>
+        <h3 data-testid={ `${index}-Curry-horizontal-tag` }>{each.tags[1]}</h3>
+        <h4
+          data-testid={ `${index}-horizontal-top-text` }
+        >
+          {AlcoholicAreaCategory}
+        </h4>
+        <ShareButtonDoneRecipes templateString={ templateString } index={ index } />
+        <h5 data-testid={ `${index}-horizontal-done-date` }>{each.doneDate}</h5>
+      </Container>
     </section>);
 }
 

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
-import { Button, Card, CardColumns } from 'react-bootstrap';
+import { Button, Card, CardColumns, Container } from 'react-bootstrap';
 import loopIngredientsAndMeasure from '../components/loopIngredientsAndMeasure';
 import Context from '../context/Context';
 import DecentFooter from '../components/DecentFooter';
@@ -79,12 +79,14 @@ export default function DrinkInProgress({ match, history, match: { params: { id 
             />
           </Button>
         </section>
-        <h3 className="category" data-testid="recipe-category">{strCategory}</h3>
-        <h5 className="instructions" data-testid="instructions">{strInstructions}</h5>
-        {loopIngredientsAndMeasure(drinkArray,
-          IngredientsAndMeasures,
-          id,
-          [refresh, setRefresh])}
+        <Container>
+          <h3 className="category" data-testid="recipe-category">{strCategory}</h3>
+          <h5 className="instructions" data-testid="instructions">{strInstructions}</h5>
+          {loopIngredientsAndMeasure(drinkArray,
+            IngredientsAndMeasures,
+            id,
+            [refresh, setRefresh])}
+        </Container>
         <Button
           variant="dark"
           onClick={ () => finishRecipe(id, details.drinks, history) }
@@ -99,7 +101,7 @@ export default function DrinkInProgress({ match, history, match: { params: { id 
     );
   }
   return (
-    <p>Loading...</p>
+    <p className="loading-text">Loading...</p>
   );
 }
 

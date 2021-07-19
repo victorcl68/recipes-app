@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import { PropTypes } from 'prop-types';
 import { verifyFavorite } from '../services/manageLocalStorage';
 import { settingFavorite2 } from '../services/manageLocalStorage2';
@@ -38,17 +38,20 @@ export default function FavoriteRecipes({ history }) {
             history={ history }
             each={ each }
           />
-          <Button
-            variant="outline-danger"
-            type="button"
-            onClick={ () => setRefresh(settingFavorite2(each, each.id, refresh)) }
-          >
-            <img
-              alt="Favorite"
-              src={ verifyFavorite(each.id) }
-              data-testid={ `${index}-horizontal-favorite-btn` }
-            />
-          </Button>
+          <Container>
+            <Button
+              className="favorite-btn-page"
+              variant="outline-danger"
+              type="button"
+              onClick={ () => setRefresh(settingFavorite2(each, each.id, refresh)) }
+            >
+              <img
+                alt="Favorite"
+                src={ verifyFavorite(each.id) }
+                data-testid={ `${index}-horizontal-favorite-btn` }
+              />
+            </Button>
+          </Container>
         </main>
       )));
   };

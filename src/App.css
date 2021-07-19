@@ -12,10 +12,6 @@
 }
 */
 
-.space-footer {
-  margin-bottom: 3%;
-}
-
 @keyframes shake {
 
   0% {
@@ -44,6 +40,10 @@
   100% {
     transform: rotate(-10deg);
   }
+}
+
+.space-footer {
+  margin-bottom: 3%;
 }
 
 .meals {
@@ -154,7 +154,8 @@
 }
 
 .iframe {
-  margin: 20px 0;
+  margin-top: 8px;
+  text-align: center;
 }
 
 .profile-email {
@@ -182,4 +183,31 @@
 
 .home, .sair {
   margin-right: 15px;
+}
+
+.button-carousel {
+  margin: 5px;
+}
+
+.checkboxes {
+  margin: 0 15px;
+}
+
+.favorite-btn-page {
+  text-align: center;
+}
+
+.explore-buttons {
+  text-align: center;
+}
+
+.h1-done-fav {
+  color: #212529;
+}
+
+.loading-text {
+  background-color: #f1c232;
+  color: red;
+  font-size: 35px;
+  text-align: center;
 }

@@ -63,7 +63,9 @@ export default function Foods({ history }) {
       <Header title="Comidas" />
       <Container>
         <HeaderSearchButton />
-        {render ? manageRenderMeal(renderList) : <div>Loading</div>}
+        {render
+          ? manageRenderMeal(renderList)
+          : <div className="loading-text">Loading</div>}
       </Container>
       <Footer />
     </main>
