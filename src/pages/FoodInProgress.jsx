@@ -112,7 +112,7 @@ export default function FoodInProgress({ history, match, match: { params: { id }
     );
   }
   return (
-    <p>Loading...</p>
+    <p className="loading-text">Loading...</p>
   );
 }
 

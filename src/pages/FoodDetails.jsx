@@ -170,7 +170,7 @@ export default function FoodDetails({ match, match: { params: { id } }, history 
     );
   }
   return (
-    <p>Loading...</p>
+    <p className="loading-text">Loading...</p>
   );
 }
 

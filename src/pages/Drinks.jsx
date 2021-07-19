@@ -63,7 +63,9 @@ export default function Drinks({ history }) {
       <Header title="Bebidas" />
       <Container>
         <HeaderSearchButton />
-        {render ? manageRenderDrink(renderList) : <div>Loading...</div>}
+        {render
+          ? manageRenderDrink(renderList)
+          : <div className="loading-text">Loading...</div>}
       </Container>
       <Footer />
     </main>

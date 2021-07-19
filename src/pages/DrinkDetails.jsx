@@ -162,7 +162,7 @@ export default function DrinkDetails({ match, match: { params: { id } }, history
     );
   }
   return (
-    <p>Loading...</p>
+    <p className="loading-text">Loading...</p>
   );
 }
 

@@ -204,3 +204,10 @@
 .h1-done-fav {
   color: #212529;
 }
+
+.loading-text {
+  background-color: #f1c232;
+  color: red;
+  font-size: 35px;
+  text-align: center;
+}

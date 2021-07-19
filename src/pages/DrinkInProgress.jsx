@@ -101,7 +101,7 @@ export default function DrinkInProgress({ match, history, match: { params: { id 
     );
   }
   return (
-    <p>Loading...</p>
+    <p className="loading-text">Loading...</p>
   );
 }
 
