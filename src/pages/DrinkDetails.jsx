@@ -53,8 +53,20 @@ export default function DrinkDetails({ match, match: { params: { id } }, history
     const slicedRecommendations = meals.slice(0, recommendationsNumber);
     return (
       <Container>
-        <button type="button" onClick={ () => handleCount('less') }>{'<'}</button>
-        <button type="button" onClick={ () => handleCount('more') }>{'>'}</button>
+        <Button
+          variant="info"
+          type="button"
+          onClick={ () => handleCount('less') }
+        >
+          {'<'}
+        </Button>
+        <Button
+          variant="info"
+          type="button"
+          onClick={ () => handleCount('more') }
+        >
+          {'>'}
+        </Button>
         <CardGroup className="d-flex justify-content-center">
           {slicedRecommendations.map((meal, index) => (
             <Card
