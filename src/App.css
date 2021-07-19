@@ -13,30 +13,24 @@
 */
 
 @keyframes shake {
-  
   0% {
     transform: rotate(5deg);
   }
-  
   50% {
     transform: rotate(-5deg);
-  }
-  
+  }  
   100% {
     transform: rotate(5deg);
   }
 }
 
 @keyframes clink {
-  
   0% {
     transform: rotate(-10deg);
   }
-  
   50% {
     transform: rotate(20deg);
   }
-  
   100% {
     transform: rotate(-10deg);
   }
@@ -202,5 +196,5 @@
 }
 
 .h1-done-fav {
-color: #212529;
- }
+  color: #212529;
+}
