@@ -105,13 +105,18 @@ export default function GlobalProvider({ children }) {
   const asyncSetState = async () => {
     const { chosenFilter, searchText } = requestParams;
     const result = await fetchAPI(baseEndPoint, chosenFilter, searchText);
-    if (!result[Object.keys(result)[0]]) {
-      global.alert(
-        'Sinto muito, não encontramos nenhuma receita para esses filtros.',
-      );
-    } else if (result) {
-      handleRender(result);
+    if (result) {
+      if (!result[Object.keys(result)[0]]) {
+        global.alert(
+          'Sinto muito, não encontramos nenhuma receita para esses filtros.',
+        );
+      } else if (result) {
+        handleRender(result);
+      }
     }
+    return global.alert(
+      'Sinto muito, não encontramos nenhuma receita para esses filtros.',
+    );
   };
 
   const detailsSyncSetState = async (endPoint) => {
