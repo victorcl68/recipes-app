@@ -43,7 +43,7 @@ export default function BodyFavoriteRecipes({ index, history, each }) {
           type="button"
           onClick={ () => history.push(templateString) }
         >
-          {each.name}
+          <h1 className="h1-done-fav">{each.name}</h1>
         </Button>
         <ShareButtonDoneRecipes templateString={ templateString } index={ index } />
       </Container>

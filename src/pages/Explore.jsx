@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -20,8 +20,10 @@ export default function Explore() {
   return redirect ? <Redirect to={ redirect } /> : (
     <main className="general-background-color">
       <Header title="Explorar" />
-      {exploreBtn('food')}
-      {exploreBtn()}
+      <Container className="explore-buttons">
+        {exploreBtn('food')}
+        {exploreBtn()}
+      </Container>
       <Footer />
     </main>
   );
