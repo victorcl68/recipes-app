@@ -66,7 +66,7 @@ export default function DrinkDetails({ match, match: { params: { id } }, history
         <CardGroup className="d-flex justify-content-center">
           {slicedRecommendations.map((meal, index) => (
             <Card
-              style={ { width: '150px', margin: '5px' } }
+              style={ { maxWidth: '180px', margin: '5px' } }
               key={ index }
               hidden={ !(index === count || index === count + 1) }
               data-testid={ `${index}-recomendation-card` }
