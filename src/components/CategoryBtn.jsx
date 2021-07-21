@@ -14,7 +14,8 @@ export default function CategoryBtn(category, func, handleToggle, toggle) {
 
   return (
     <Button
-      variant="outline-dark"
+      style={ { margin: '2px', backgroundColor: 'brown' } }
+      variant="outline-light"
       data-testid={ `${category}-category-filter` }
       type="button"
       key={ category }

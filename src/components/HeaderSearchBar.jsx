@@ -21,8 +21,8 @@ export default function HeaderSearchBar() {
   }, [searchText, chosenFilter]);
 
   return (
-    <Form>
-      <Container className="d-flex">
+    <Form style={ { marginBottom: '10px' } }>
+      <Container className="d-flex justify-content-center">
         <FormControl
           name="searchText"
           data-testid="search-input"
@@ -31,10 +31,11 @@ export default function HeaderSearchBar() {
           value={ searchText }
           onChange={ handleChange }
           placeholder="O que vamos fazer hoje?"
-          className="mr-2"
           aria-label="Pesquisar"
         />
         <Button
+          style={ { backgroundColor: 'brown' } }
+          variant="outline-light"
           onClick={ blockRequest
             ? () => global.alert('Sua busca deve conter somente 1 (um) caracter')
             : () => asyncSetState() }

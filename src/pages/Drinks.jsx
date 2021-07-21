@@ -24,6 +24,7 @@ export default function Drinks({ history }) {
 
   useEffect(() => {
     updateEndPoint('drinks');
+    window.scrollTo(0, 0);
     return () => resetParams();
   }, []);
 
@@ -41,8 +42,8 @@ export default function Drinks({ history }) {
     <div>
       <Container>
         <Button
-          variant="outline-dark"
-          type="button"
+          style={ { margin: '2px', backgroundColor: 'brown' } }
+          variant="outline-light"
           data-testid="All-category-filter"
           onClick={ () => {
             filterCategory();

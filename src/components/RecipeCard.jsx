@@ -17,8 +17,8 @@ export default function RecipeCard(recipe, index, history) {
         alt={ recipe[`str${recipeType}`] }
         data-testid={ `${index}-card-img` }
       />
-      <Card.Body>
-        <Card.Title data-testid={ [`${index}-card-name`] }>
+      <Card.Body style={ { padding: '10px 0' } }>
+        <Card.Title style={ { padding: '5px 0' } } data-testid={ [`${index}-card-name`] }>
           {recipe[`str${recipeType}`]}
         </Card.Title>
       </Card.Body>

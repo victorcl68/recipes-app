@@ -6,10 +6,9 @@ import Context from '../context/Context';
 import { copyLinkInProgress } from '../services/functions';
 import DecentFooter from '../components/DecentFooter';
 import shareIcon from '../images/shareIcon.svg';
-import { verifyFavorite,
-  settingFavorite,
-  disableFinishRecipeButton,
+import { verifyFavorite, settingFavorite, disableFinishRecipeButton,
   finishRecipe } from '../services/manageLocalStorage';
+import LoadingImg from '../components/LoadingImg';
 
 export default function FoodInProgress({ history, match, match: { params: { id } } }) {
   const [isCopied, setIsCopied] = useState(false);
@@ -45,19 +44,22 @@ export default function FoodInProgress({ history, match, match: { params: { id }
 
     return (
       <main className="general-background-color">
-        <CardColumns>
-          <Card>
+        <CardColumns className="d-flex justify-content-center">
+          <Card style={ { width: '24rem' } }>
             <Card.Img
               variant="top"
               src={ strMealThumb }
               alt="Meal"
-              width="200px"
+              width="100px"
               data-testid="recipe-photo"
             />
             <Card.Body>
               <Card.Title data-testid="recipe-title">
-                {strMeal}
+                {`Name: ${strMeal}`}
               </Card.Title>
+              <Card.Text className="category" data-testid="recipe-category">
+                {`Category: ${strCategory}`}
+              </Card.Text>
             </Card.Body>
           </Card>
         </CardColumns>
@@ -82,13 +84,16 @@ export default function FoodInProgress({ history, match, match: { params: { id }
             />
           </Button>
         </section>
+        <br />
         <Container>
-          <h3 className="category" data-testid="recipe-category">{strCategory}</h3>
-          <h5 className="instructions" data-testid="instructions">{strInstructions}</h5>
+          <h3>Ingredients:</h3>
           {loopIngredientsAndMeasure(mealArray,
             IngredientsAndMeasures,
             id,
             [refresh, setRefresh])}
+          <br />
+          <h3>Instrução:</h3>
+          <div className="instructions" data-testid="instructions">{strInstructions}</div>
           <iframe
             className="iframe"
             data-testid="video"
@@ -97,6 +102,7 @@ export default function FoodInProgress({ history, match, match: { params: { id }
             title="Recipe"
           />
         </Container>
+        <br />
         <DecentFooter />
         <Button
           variant="dark"
@@ -104,7 +110,6 @@ export default function FoodInProgress({ history, match, match: { params: { id }
           onClick={ () => finishRecipe(id, details.meals, history) }
           disabled={ disableFinishRecipeButton(id) }
           data-testid="finish-recipe-btn"
-          type="button"
         >
           Finalizar Receita
         </Button>
@@ -112,7 +117,7 @@ export default function FoodInProgress({ history, match, match: { params: { id }
     );
   }
   return (
-    <p className="loading-text">Loading...</p>
+    LoadingImg()
   );
 }
 
