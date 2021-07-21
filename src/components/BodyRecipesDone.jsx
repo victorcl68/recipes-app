@@ -19,7 +19,7 @@ export default function BodyRecipesDone({ index, history, each }) {
         onClick={ () => history.push(templateString) }
       >
         <CardGroup>
-          <Card style={ { width: '24rem' } }>
+          <Card style={ { maxWidth: '24rem' } }>
             <Card.Img
               variant="top"
               data-testid={ `${index}-horizontal-image` }
