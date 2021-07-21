@@ -3,7 +3,8 @@ import { Button } from 'react-bootstrap';
 
 const exploreBtn = (word, term, handle) => (
   <Button
-    variant="outline-dark"
+    style={ { margin: '5px', backgroundColor: 'brown' } }
+    variant="outline-light"
     key={ term }
     type="button"
     data-testid={ `explore-${term}` }

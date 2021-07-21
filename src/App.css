@@ -47,7 +47,7 @@ html {
 }
 
 .space-footer {
-  margin-bottom: 15%;
+  margin-bottom: 10%;
 }
 
 .meals {
@@ -191,6 +191,7 @@ html {
 
 .button-carousel {
   margin: 5px;
+  width: fit-content;
 }
 
 .checkboxes {

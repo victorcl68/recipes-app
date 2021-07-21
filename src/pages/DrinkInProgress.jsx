@@ -8,6 +8,7 @@ import { copyLinkInProgress } from '../services/functions';
 import shareIcon from '../images/shareIcon.svg';
 import { verifyFavorite, settingFavorite,
   disableFinishRecipeButton, finishRecipe } from '../services/manageLocalStorage';
+import LoadingImg from '../components/LoadingImg';
 
 export default function DrinkInProgress({ match, history, match: { params: { id } } }) {
   const [isCopied, setIsCopied] = useState(false);
@@ -42,19 +43,22 @@ export default function DrinkInProgress({ match, history, match: { params: { id 
 
     return (
       <main className="general-background-color">
-        <CardColumns>
-          <Card>
+        <CardColumns className="d-flex justify-content-center">
+          <Card style={ { width: '24rem' } }>
             <Card.Img
               variant="top"
               src={ strDrinkThumb }
               alt="Drink"
-              width="200px"
+              width="100px"
               data-testid="recipe-photo"
             />
             <Card.Body>
               <Card.Title data-testid="recipe-title">
-                {strDrink}
+                {`Name: ${strDrink}`}
               </Card.Title>
+              <Card.Text className="category" data-testid="recipe-category">
+                {`Category: ${strCategory}`}
+              </Card.Text>
             </Card.Body>
           </Card>
         </CardColumns>
@@ -79,29 +83,33 @@ export default function DrinkInProgress({ match, history, match: { params: { id 
             />
           </Button>
         </section>
+        <br />
         <Container>
-          <h3 className="category" data-testid="recipe-category">{strCategory}</h3>
-          <h5 className="instructions" data-testid="instructions">{strInstructions}</h5>
+          <h3>Ingredients:</h3>
           {loopIngredientsAndMeasure(drinkArray,
             IngredientsAndMeasures,
             id,
             [refresh, setRefresh])}
+          <br />
+          <h3>Instrução:</h3>
+          <div className="instructions" data-testid="instructions">{strInstructions}</div>
         </Container>
+        <br />
+        <DecentFooter />
         <Button
           variant="dark"
+          className="finish-recipe"
           onClick={ () => finishRecipe(id, details.drinks, history) }
           disabled={ disableFinishRecipeButton(id) }
           data-testid="finish-recipe-btn"
-          type="button"
         >
           Finalizar Receita
         </Button>
-        <DecentFooter />
       </main>
     );
   }
   return (
-    <p className="loading-text">Loading...</p>
+    LoadingImg()
   );
 }
 

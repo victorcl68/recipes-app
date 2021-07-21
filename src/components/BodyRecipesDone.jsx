@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, CardColumns, Container } from 'react-bootstrap';
+import { Button, Card, CardGroup, Container } from 'react-bootstrap';
 import { PropTypes } from 'prop-types';
 import ShareButtonDoneRecipes from './ShareButtonDoneRecipes';
 
@@ -12,14 +12,14 @@ export default function BodyRecipesDone({ index, history, each }) {
   }
   const templateString = `/${each.type}s/${each.id}`;
   return (
-    <section>
+    <Container>
       <Button
         variant="outline"
         type="button"
         onClick={ () => history.push(templateString) }
       >
-        <CardColumns>
-          <Card>
+        <CardGroup>
+          <Card style={ { maxWidth: '24rem' } }>
             <Card.Img
               variant="top"
               data-testid={ `${index}-horizontal-image` }
@@ -28,7 +28,7 @@ export default function BodyRecipesDone({ index, history, each }) {
               width="200px"
             />
           </Card>
-        </CardColumns>
+        </CardGroup>
       </Button>
       <Container>
         <Button
@@ -49,7 +49,7 @@ export default function BodyRecipesDone({ index, history, each }) {
         <ShareButtonDoneRecipes templateString={ templateString } index={ index } />
         <h5 data-testid={ `${index}-horizontal-done-date` }>{each.doneDate}</h5>
       </Container>
-    </section>);
+    </Container>);
 }
 
 BodyRecipesDone.propTypes = {

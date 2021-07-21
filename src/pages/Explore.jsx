@@ -8,7 +8,8 @@ export default function Explore() {
   const [redirect, setRedirect] = useState();
   const exploreBtn = (food) => (
     <Button
-      variant="outline-dark"
+      style={ { margin: '5px', backgroundColor: 'brown' } }
+      variant="outline-light"
       type="button"
       data-testid={ food ? 'explore-food' : 'explore-drinks' }
       onClick={ () => setRedirect(food ? '/explorar/comidas' : '/explorar/bebidas') }

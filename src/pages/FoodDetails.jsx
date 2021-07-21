@@ -53,26 +53,20 @@ export default function FoodDetails({ match, match: { params: { id } }, history 
     const recommendationsNumber = 6;
     const slicedRecommendations = drinks.slice(0, recommendationsNumber);
     return (
-      <Container>
+      <Container className="d-flex align-items-center justify-content-center">
         <Button
-          // variant="info"
+          style={ { backgroundColor: 'brown' } }
+          variant="outline-light"
           className="button-carousel"
           type="button"
           onClick={ () => handleCount('less') }
         >
           {'<'}
         </Button>
-        <Button
-          // variant="info"
-          className="button-carousel"
-          type="button"
-          onClick={ () => handleCount('more') }
-        >
-          {'>'}
-        </Button>
         <CardGroup className="d-flex justify-content-center">
           {slicedRecommendations.map((drink, index) => (
             <Card
+              style={ { maxWidth: '180px', margin: '5px' } }
               key={ index }
               hidden={ !(index === count || index === count + 1) }
               data-testid={ `${index}-recomendation-card` }
@@ -82,7 +76,7 @@ export default function FoodDetails({ match, match: { params: { id } }, history 
                 src={ drink.strDrinkThumb }
                 alt="recommendation drink"
               />
-              <Card.Body>
+              <Card.Body style={ { padding: '5px 0' } }>
                 <Card.Title data-testid={ `${index}-recomendation-title` }>
                   {drink.strDrink}
                 </Card.Title>
@@ -90,6 +84,15 @@ export default function FoodDetails({ match, match: { params: { id } }, history 
             </Card>
           ))}
         </CardGroup>
+        <Button
+          style={ { backgroundColor: 'brown' } }
+          variant="outline-light"
+          className="button-carousel"
+          type="button"
+          onClick={ () => handleCount('more') }
+        >
+          {'>'}
+        </Button>
       </Container>
     );
   };
