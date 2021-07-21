@@ -6,7 +6,7 @@ export default function IngredientCard(strIng, urlPart, index, func) {
     <Card
       key={ index }
       data-testid={ `${index}-ingredient-card` }
-      style={ { width: '180px' } }
+      style={ { width: '180px', margin: '5px' } }
       onClick={ () => func(strIng) }
     >
       <Card.Img

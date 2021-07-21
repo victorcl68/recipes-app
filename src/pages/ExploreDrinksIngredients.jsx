@@ -1,11 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useState } from 'react';
-import { Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import Context from '../context/Context';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import IngredientCard from '../components/IngredientCard';
+import LoadingImg from '../components/LoadingImg';
 
 export default function ExploreDrinksIngredients() {
   const { filterList: { ingredients }, getByIngredients } = useContext(Context);
@@ -18,16 +19,15 @@ export default function ExploreDrinksIngredients() {
   };
 
   return isRedirect ? <Redirect to="/bebidas" /> : (
-    <main className="general-background-color">
+    <main className="general-background-color space-footer">
       <Header title="Explorar Ingredientes" />
-      <Container>
-        <Row>
-          {ingredients.drinks && ingredients.drinks
-            .slice(0, maxItems).map(({
-              strIngredient1,
-            }, index) => IngredientCard(strIngredient1, 'cocktail', index, handle))}
-        </Row>
-      </Container>
+      {ingredients.drinks.length > 0
+        ? (
+          <Container className="d-flex flex-wrap justify-content-center">
+            {ingredients.drinks.slice(0, maxItems).map(({ strIngredient1 },
+              index) => IngredientCard(strIngredient1, 'cocktail', index, handle))}
+          </Container>)
+        : LoadingImg()}
       <Footer />
     </main>
   );

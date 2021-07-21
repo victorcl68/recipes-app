@@ -12,6 +12,10 @@
 }
 */
 
+html {
+  background-color: #f1c232;
+}
+
 @keyframes shake {
 
   0% {
@@ -43,7 +47,7 @@
 }
 
 .space-footer {
-  margin-bottom: 3%;
+  margin-bottom: 15%;
 }
 
 .meals {
@@ -92,7 +96,7 @@
 }
 
 .footer-generic {
-  background-color: #c00;
+  background-color: brown;
   bottom: 0;
   padding: 10px;
   position: fixed;
@@ -205,9 +209,3 @@
   color: #212529;
 }
 
-.loading-text {
-  background-color: #f1c232;
-  color: red;
-  font-size: 35px;
-  text-align: center;
-}

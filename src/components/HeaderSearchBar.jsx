@@ -30,7 +30,7 @@ export default function HeaderSearchBar() {
           type="search"
           value={ searchText }
           onChange={ handleChange }
-          placeholder="Search"
+          placeholder="O que vamos fazer hoje?"
           className="mr-2"
           aria-label="Pesquisar"
         />
