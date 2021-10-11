@@ -59,7 +59,8 @@
     "mochawesome-merge": "^4.1.0",
     "mochawesome-report-generator": "^5.1.0",
     "stylelint": "^13.8.0",
-    "stylelint-order": "^4.1.0"
+    "stylelint-order": "^4.1.0",
+    "stylelint-scss": ">=2.0.0"
   },
   "jest": {
     "coveragePathIgnorePatterns": [
